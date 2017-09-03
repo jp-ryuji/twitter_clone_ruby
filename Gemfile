@@ -24,6 +24,7 @@ gem 'jquery-turbolinks'
 # View
 gem 'slim-rails'
 gem 'bootstrap'
+gem 'tether-rails'
 
 group :development, :test do
   gem 'rspec-rails'
