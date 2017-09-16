@@ -19,7 +19,6 @@ gem 'dotenv-rails'
 
 # Front End
 gem 'jquery-rails'
-gem 'jquery-turbolinks'
 
 # View
 gem 'slim-rails'
