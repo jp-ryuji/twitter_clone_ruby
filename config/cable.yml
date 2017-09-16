@@ -7,4 +7,4 @@ test:
 production:
   adapter: redis
   url: redis://localhost:6379/1
-  channel_prefix: manabu_production
+  channel_prefix: twitter_clone_ruby_production
