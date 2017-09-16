@@ -22,6 +22,7 @@ gem 'sorcery'
 
 # Front End
 gem 'jquery-rails'
+gem 'popper_js'
 
 # View
 gem 'slim-rails'
