@@ -1,0 +1,22 @@
+= form_tag sessions_path do
+  .form-group.row
+    = label_tag :email, 'Email', class: 'col-sm-2 form-control-label'
+    .col-sm-10
+      = email_field_tag :email, nil, autofocus: true, class: 'form-control'
+  .form-group.row
+    = label_tag :password, 'Password', class: 'col-sm-2 form-control-label'
+    .col-sm-10
+      = password_field_tag :password, nil, autocomplete: 'off', class: 'form-control'
+  .form-group.row
+    / FIXME offset-sm-2 doesn't work.
+    .col-sm-2
+    .col-sm-10
+      = check_box_tag :remember_me
+      =<
+      = label_tag :remember_me
+  .form-group.row
+    / FIXME offset-sm-2 doesn't work.
+    .col-sm-2
+    .col-sm-10
+      .actions
+        = submit_tag 'Log in', class: 'btn btn-primary'

@@ -17,8 +17,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
 gem 'dotenv-rails'
 
+# Authentication
+gem 'sorcery'
+
 # Front End
 gem 'jquery-rails'
+gem 'popper_js'
 
 # View
 gem 'slim-rails'
