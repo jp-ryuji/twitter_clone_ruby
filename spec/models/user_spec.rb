@@ -12,4 +12,15 @@ RSpec.describe User, type: :model do
     create_list(:user, 2).each { |u| u.followers << user }
     expect(user.followees.size).to eq(2)
   end
+
+  describe '#follow, #following?' do
+    it 'enables to follow' do
+      follower = create(:user)
+      expect(follower.following?(user)).to be_falsey
+
+      follower.follow(user)
+      expect(follower.followees.size).to eq(1)
+      expect(follower.following?(user)).to be_truthy
+    end
+  end
 end
