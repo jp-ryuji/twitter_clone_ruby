@@ -26,5 +26,10 @@ RSpec.describe User, type: :model do
       expect(follower.followees.size).to eq(0)
       expect(follower.following?(user)).to be_falsey
     end
+
+    it 'disallows to follow myself' do
+      expect { user.follow(user) }.to raise_error
+      expect(user.followers.size).to eq(0)
+    end
   end
 end
