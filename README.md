@@ -1,24 +1,25 @@
-# README
+# Local development
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Required software
 
-Things you may want to cover:
+* Ruby 2.4.1
+* Ruby on Rails 5.1.3
+* Postgresql 9.3 or later
 
-* Ruby version
+### Database setup
 
-* System dependencies
+```shell
+bin/rake db:setup
+```
 
-* Configuration
+### Test Data setup
 
-* Database creation
+```shell
+bin/rake dev:generate_data
+```
 
-* Database initialization
+### Run Unit Tests/Specs
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```shell
+bundle exec rspec
+```
