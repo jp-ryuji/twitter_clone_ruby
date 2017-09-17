@@ -9,7 +9,9 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
+  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true
+  validates :email, format: { with: EMAIL_REGEX }, allow_blank: true
   validates :password, presence: true, on: :create
 
   def follow(other)

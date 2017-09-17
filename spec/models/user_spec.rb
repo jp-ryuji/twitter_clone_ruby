@@ -13,6 +13,41 @@ RSpec.describe User, type: :model do
     expect(user.followees.size).to eq(2)
   end
 
+  describe 'validations' do
+    describe 'email' do
+      it 'is present' do
+        user = build(:user, email: nil)
+        expect(user).to be_invalid
+        expect(user.errors[:email]).to include("can't be blank")
+
+        user = build(:user, email: '')
+        expect(user).to be_invalid
+        expect(user.errors[:email]).to include("can't be blank")
+      end
+
+      it 'does not allow invalid format' do
+        invalid_email_formats = %w(
+          user@example,com
+          user_at_foo.org
+          user.name@example.
+          foo@bar_baz.com
+          foo@bar..com
+        )
+
+        invalid_email_formats.each do |email|
+          user = build(:user, email: email)
+          expect(user).to be_invalid
+          expect(user.errors[:email]).to include('is invalid')
+        end
+      end
+
+      it 'allows valid format' do
+        user = build(:user, email: 'text@example.com')
+        expect(user).to be_valid
+      end
+    end
+  end
+
   describe '#follow, #unfollow, #following?' do
     it 'enables to follow' do
       follower = create(:user)
