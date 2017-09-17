@@ -3,11 +3,15 @@
   .form-group.row
     = f.label :email, class: 'col-sm-2 col-form-label'
     .col-sm-10
-      = f.email_field :email, autofocus: true, class: 'form-control'
+      = f.email_field :email, autofocus: true, required: true, class: 'form-control'
+  .form-group.row
+    = f.label :screen_name, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_field :screen_name, maxlength: 15, required: true, class: 'form-control'
   .form-group.row
     = f.label :password, class: 'col-sm-2 col-form-label'
     .col-sm-10
-      = f.password_field :password, autocomplete: 'off', class: 'form-control'
+      = f.password_field :password, required: true, autocomplete: 'off', class: 'form-control'
   .form-group.row
     / FIXME offset-sm-2 doesn't work.
     .col-sm-2

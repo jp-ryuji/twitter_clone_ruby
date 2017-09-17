@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     post :follow
     delete :unfollow
   end
+  resources :users, param: :screen_name, path: '/', only: [:show]
+
   resources :sessions, only: [:create, :destroy]
   resources :home, only: [:index]
   resources :posts, only: [:create]

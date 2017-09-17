@@ -1,6 +1,6 @@
 / TODO Add nav
 - if logged_in?
-  = "Logged in as #{current_user.email}"
+  = link_to "#{current_user.screen_name} (#{current_user.email})", user_path(screen_name: current_user.screen_name)
   = link_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-primary my-2 my-sm-0'
 - else
   = link_to 'Login', login_path, class: 'btn btn-outline-primary my-2 my-sm-0'
