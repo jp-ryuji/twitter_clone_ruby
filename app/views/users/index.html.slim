@@ -6,6 +6,7 @@ table.table.table-hover
     - @users.each do |user|
       tr
         td= user.email
+        / FIXME This checks user one by one, that inefficient. This page should only show users that current_user doesn't follow.
         - if current_user.following?(user)
           / TODO The button should be 'Following' normally, and it turns 'Unfollow' when it's hovered.
           td= link_to 'Unfollow', user_unfollow_path(user_id: user.id), method: :delete, class: 'btn btn-warning'
