@@ -96,6 +96,14 @@ RSpec.describe User, type: :model do
         user = build(:user, screen_name: 'abc_123')
         expect(user).to be_valid
       end
+
+      it 'is not included in UNAVAILABLE_SCREEN_NAMES' do
+        UNAVAILABLE_SCREEN_NAMES[0..5].each do |screen_name|
+          user = build(:user, screen_name: screen_name)
+          expect(user).to be_invalid
+          expect(user.errors[:screen_name]).to include('is reserved')
+        end
+      end
     end
 
     describe 'name' do
