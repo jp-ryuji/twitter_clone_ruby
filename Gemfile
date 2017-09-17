@@ -14,7 +14,6 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'turbolinks', '~> 5'
 gem 'dotenv-rails'
 
 # Authentication
@@ -52,8 +51,6 @@ group :development do
   gem 'bullet'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'rails-erd'
