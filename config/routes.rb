@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create]
+  resources :users, only: [:index, :new, :create] do
+    post :follow
+    delete :unfollow
+  end
   resources :sessions, only: [:create, :destroy]
   resources :home, only: [:index]
 
