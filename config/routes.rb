@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:create, :destroy]
   resources :home, only: [:index]
+  resources :posts, only: [:create]
 
   get 'login' => 'sessions#new', as: 'login'
   delete 'logout' => 'sessions#destroy', as: 'logout'
