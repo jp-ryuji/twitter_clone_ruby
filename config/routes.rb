@@ -3,8 +3,6 @@ Rails.application.routes.draw do
     post :follow
     delete :unfollow
   end
-  resources :users, param: :screen_name, path: '/', only: [:show]
-
   resources :sessions, only: [:create, :destroy]
   resources :home, only: [:index]
   resources :posts, only: [:create]
@@ -13,5 +11,6 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy', as: 'logout'
   get 'signup' => 'users#new', as: 'signup'
 
+  resources :users, param: :screen_name, path: '/', only: [:show]
   root to: 'home#index'
 end
