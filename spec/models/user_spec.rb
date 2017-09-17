@@ -46,6 +46,27 @@ RSpec.describe User, type: :model do
         expect(user).to be_valid
       end
     end
+
+    describe 'password' do
+      it 'is present' do
+        user = build(:user, password: nil)
+        expect(user).to be_invalid
+        expect(user.errors[:password]).to include("can't be blank")
+
+        user = build(:user, password: '')
+        expect(user).to be_invalid
+        expect(user.errors[:password]).to include("can't be blank")
+      end
+
+      it 'is more than 5 characters' do
+        user = build(:user, password: 'aaaaa')
+        expect(user).to be_invalid
+        expect(user.errors[:password]).to include('is too short (minimum is 6 characters)')
+
+        user = build(:user, password: 'aaaaaa')
+        expect(user).to be_valid
+      end
+    end
   end
 
   describe '#follow, #unfollow, #following?' do

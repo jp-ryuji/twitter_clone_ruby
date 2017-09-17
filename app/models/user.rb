@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: EMAIL_REGEX }, allow_blank: true
   validates :password, presence: true, on: :create
+  validates :password, length: { minimum: 6 }, allow_blank: true
 
   def follow(other)
     followees << other
