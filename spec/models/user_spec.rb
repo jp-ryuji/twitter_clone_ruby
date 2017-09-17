@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
     expect(user.followees.size).to eq(2)
   end
 
-  describe '#follow, #following?' do
+  describe '#follow, #unfollow, #following?' do
     it 'enables to follow' do
       follower = create(:user)
       expect(follower.following?(user)).to be_falsey
@@ -21,6 +21,10 @@ RSpec.describe User, type: :model do
       follower.follow(user)
       expect(follower.followees.size).to eq(1)
       expect(follower.following?(user)).to be_truthy
+
+      follower.unfollow(user)
+      expect(follower.followees.size).to eq(0)
+      expect(follower.following?(user)).to be_falsey
     end
   end
 end
