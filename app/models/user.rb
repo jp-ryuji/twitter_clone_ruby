@@ -19,6 +19,6 @@ class User < ApplicationRecord
   end
 
   def following?(other)
-    followees.include?(other)
+    User.joins(:following_relations).where('followings.followee_id = ? AND followings.follower_id = ?', other.id, id).any?
   end
 end
