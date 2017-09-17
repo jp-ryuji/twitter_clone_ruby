@@ -18,6 +18,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_blank: true
   validates :screen_name, presence: true, uniqueness: true
   validates :screen_name, format: { with: SCREEN_NAME_REGEXP }, allow_blank: true
+  validates :name, length: { maximum: 20 }, allow_blank: true
 
   def follow(other)
     followees << other

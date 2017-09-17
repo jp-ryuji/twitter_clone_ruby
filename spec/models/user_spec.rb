@@ -97,6 +97,17 @@ RSpec.describe User, type: :model do
         expect(user).to be_valid
       end
     end
+
+    describe 'name' do
+      it 'is equal to or less than 20 characters' do
+        user = build(:user, name: 'a' * 21)
+        expect(user).to be_invalid
+        expect(user.errors[:name]).to include('is too long (maximum is 20 characters)')
+
+        user = build(:user, name: 'a' * 20)
+        expect(user).to be_valid
+      end
+    end
   end
 
   describe '#follow, #unfollow, #following?' do
