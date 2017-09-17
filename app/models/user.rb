@@ -9,4 +9,16 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, on: :create
+
+  def follow(other)
+    followees << other
+  end
+
+  def unfollow(other)
+    followees.destroy(other)
+  end
+
+  def following?(other)
+    followees.include?(other)
+  end
 end
