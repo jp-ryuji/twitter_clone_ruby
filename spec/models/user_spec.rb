@@ -133,7 +133,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'disallows to follow myself' do
-      expect { user.follow(user) }.to raise_error
+      expect { user.follow(user) }.to raise_error(ActiveRecord::RecordInvalid)
       expect(user.followers.size).to eq(0)
     end
   end
