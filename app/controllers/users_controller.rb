@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:index]
+  before_action :require_login, only: [:index, :show]
   before_action :set_user, only: [:follow, :unfollow]
 
   def index
     @users = User.where.not(id: current_user.id)
+  end
+
+  def show
+    @user = User.find_by(screen_name: params[:screen_name])
   end
 
   def new
