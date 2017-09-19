@@ -28,8 +28,4 @@ class User < ApplicationRecord
   def unfollow(other)
     followees.destroy(other)
   end
-
-  def following?(other)
-    User.joins(:following_relations).where('followings.followee_id = ? AND followings.follower_id = ?', other.id, id).any?
-  end
 end
