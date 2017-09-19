@@ -35,6 +35,14 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: "Unfollowed #{@user.email}"
   end
 
+  def following
+
+  end
+
+  def followers
+
+  end
+
   private
     def user_params
       params.require(:user).permit(:email, :screen_name, :password)
