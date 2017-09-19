@@ -1,0 +1,8 @@
+h4= 'Following User List'
+
+table.table.table-hover
+  tbody
+    - @users.each do |user|
+      tr
+        td= user.screen_name
+        td= link_to 'Unfollow', user_unfollow_path(user_id: user.id), method: :delete, class: 'btn btn-warning'
