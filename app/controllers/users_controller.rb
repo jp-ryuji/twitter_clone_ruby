@@ -2,10 +2,6 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
   before_action :set_user, only: [:follow, :unfollow]
 
-  def index
-    @users = User.where.not(id: current_user.id)
-  end
-
   def show
     @user = User.find_by(screen_name: params[:screen_name])
   end
@@ -24,6 +20,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def who_to_follow
+    @users = User.not_following_users(current_user)
+  end
+
   # TODO follow and unfollow should be done by ajax.
   # TODO fallback_location in follow and unfollow can be changed.
   def follow
@@ -37,11 +37,11 @@ class UsersController < ApplicationController
   end
 
   def following_users
-    @users = current_user.following_users
+    @following_users = current_user.following_users
   end
 
   def followers
-    @users = current_user.followers
+    @followers = current_user.followers
     @following_user_ids = current_user.following_user_ids
   end
 

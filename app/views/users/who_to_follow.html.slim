@@ -1,0 +1,8 @@
+h4= 'Who to follow (Suggestions)'
+
+table.table.table-hover
+  tbody
+    - @users.each do |user|
+      tr
+        td= user.screen_name
+        td= link_to 'Follow', user_follow_path(user_id: user.id), method: :post, class: 'btn btn-primary'

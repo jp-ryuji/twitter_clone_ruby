@@ -21,6 +21,11 @@ class User < ApplicationRecord
   validates :screen_name, exclusion: { in: UNAVAILABLE_SCREEN_NAMES }, allow_blank: true
   validates :name, length: { maximum: 20 }, allow_blank: true
 
+  def self.not_following_users(myself)
+    where.not(id: myself.id)
+      .where.not(id: myself.following_user_ids)
+  end
+
   def follow(other)
     following_users << other
   end
