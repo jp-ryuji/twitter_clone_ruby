@@ -2,9 +2,9 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :following_relations, class_name: 'Following', foreign_key: 'follower_id', dependent: :destroy
-  has_many :followees, through: :following_relations, source: :followee
+  has_many :following_users, through: :following_relations, source: :following_user
 
-  has_many :followed_relations, class_name: 'Following', foreign_key: 'followee_id', dependent: :destroy
+  has_many :followed_relations, class_name: 'Following', foreign_key: 'following_user_id', dependent: :destroy
   has_many :followers, through: :followed_relations, source: :follower
 
   has_many :posts, dependent: :destroy
@@ -22,10 +22,10 @@ class User < ApplicationRecord
   validates :name, length: { maximum: 20 }, allow_blank: true
 
   def follow(other)
-    followees << other
+    following_users << other
   end
 
   def unfollow(other)
-    followees.destroy(other)
+    following_users.destroy(other)
   end
 end

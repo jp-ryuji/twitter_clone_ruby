@@ -8,9 +8,9 @@ RSpec.describe User, type: :model do
     expect(user.followers.size).to eq(2)
   end
 
-  it 'has many followees' do
+  it 'has many following users' do
     create_list(:user, 2).each { |u| u.followers << user }
-    expect(user.followees.size).to eq(2)
+    expect(user.following_users.size).to eq(2)
   end
 
   describe 'validations' do
@@ -118,18 +118,15 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#follow, #unfollow, #following?' do
+  describe '#follow, #unfollow' do
     it 'enables to follow' do
       follower = create(:user)
-      expect(follower.following?(user)).to be_falsey
 
       follower.follow(user)
-      expect(follower.followees.size).to eq(1)
-      expect(follower.following?(user)).to be_truthy
+      expect(follower.following_users.size).to eq(1)
 
       follower.unfollow(user)
-      expect(follower.followees.size).to eq(0)
-      expect(follower.following?(user)).to be_falsey
+      expect(follower.following_users.size).to eq(0)
     end
 
     it 'disallows to follow myself' do
