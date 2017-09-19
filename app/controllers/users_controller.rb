@@ -37,11 +37,11 @@ class UsersController < ApplicationController
   end
 
   def following_users
-    @users = current_user.following_users
+    @following_users = current_user.following_users
   end
 
   def followers
-    @users = current_user.followers
+    @followers = current_user.followers
     @following_user_ids = current_user.following_user_ids
   end
 
