@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917102228) do
+ActiveRecord::Schema.define(version: 20170919082608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "followings", force: :cascade do |t|
-    t.integer "followee_id", null: false
+    t.integer "following_user_id", null: false
     t.integer "follower_id", null: false
-    t.index ["followee_id"], name: "index_followings_on_followee_id"
-    t.index ["follower_id", "followee_id"], name: "index_followings_on_follower_id_and_followee_id", unique: true
+    t.index ["follower_id", "following_user_id"], name: "index_followings_on_follower_id_and_following_user_id", unique: true
+    t.index ["following_user_id"], name: "index_followings_on_following_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
