@@ -45,6 +45,12 @@ RSpec.describe User, type: :model do
         user = build(:user, email: 'text@example.com')
         expect(user).to be_valid
       end
+
+      it 'is case insensitive' do
+        email = 'Test@EXAMPLE.COM'
+        create(:user, email: email)
+        expect { create(:user, email: email.downcase) }.to raise_error(ActiveRecord::RecordInvalid)
+      end
     end
 
     describe 'password' do
