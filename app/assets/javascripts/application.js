@@ -15,4 +15,9 @@
 //= require popper
 //= require tether
 //= require bootstrap
+//= require flatpickr
 //= require_tree .
+
+$(document).ready(() => {
+  flatpickr('.flatpickr');
+});

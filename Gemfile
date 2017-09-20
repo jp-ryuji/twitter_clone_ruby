@@ -15,18 +15,19 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'dotenv-rails'
+gem 'virtus'
 
 # Authentication
 gem 'sorcery'
 
-# Front End
+# View
+# FIXME JS libraries should be loaded with yarn.
 gem 'jquery-rails'
 gem 'popper_js'
-
-# View
 gem 'slim-rails'
 gem 'bootstrap'
-gem 'tether-rails'
+gem 'tether-rails' # TODO This might not be necessary.
+gem 'flatpickr_rails'
 
 group :development, :test do
   gem 'rspec-rails'

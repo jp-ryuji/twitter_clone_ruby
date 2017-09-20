@@ -1,0 +1,23 @@
+h4= 'Advanced Search'
+
+= form_for @form, url: search_advanced_path, method: :get do |f|
+  .form-group.row
+    = f.label :from, 'Tweet from this account', class: 'col-sm-3 col-form-label'
+    .col-sm-9
+      = f.text_field :from, class: 'form-control'
+  .form-group.row
+    = f.label :since, 'Date Range', class: 'col-sm-3 col-form-label'
+    .col-sm-9.input-group
+      = f.text_field :since, class: 'flatpickr form-control'
+      / FIXME The color should be different from the date field.
+      = f.label :till, '~', class: 't1-label input-group-addon'
+      = f.text_field :till, class: 'flatpickr form-control'
+  .form-group.row
+    / FIXME offset-sm-3 doesn't work.
+    .col-sm-3
+    .col-sm-9
+      = f.submit 'Search', class: 'btn btn-primary'
+      =>
+      = link_to_reset 'posts', search_advanced_path, :from, :since, :till, class: 'btn btn-info'
+
+== render 'shared/posts', posts: @posts
