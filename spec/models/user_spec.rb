@@ -106,6 +106,12 @@ RSpec.describe User, type: :model do
         expect { create(:user, screen_name: screen_name.downcase) }.to raise_error(ActiveRecord::RecordInvalid)
       end
 
+      it 'is saved in lowercase letters' do
+        screen_name = 'Abc_123'
+        create(:user, screen_name: screen_name)
+        expect(User.find_by(screen_name: screen_name.downcase)).to be_truthy
+      end
+
       it 'consists of alphanumeric characters and underscores only' do
         user = build(:user, screen_name: 'aあ')
         expect(user).to be_invalid
