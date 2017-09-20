@@ -70,7 +70,7 @@ RSpec.describe User, type: :model do
         expect(user.errors[:password]).to include("can't be blank")
       end
 
-      it 'is more than 5 characters' do
+      it 'is equal to or more than 6 characters' do
         user = build(:user, password: 'aaaaa')
         expect(user).to be_invalid
         expect(user.errors[:password]).to include('is too short (minimum is 6 characters)')
@@ -131,7 +131,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#follow, #unfollow' do
-    it 'enables to follow' do
+    it 'enables to follow and unfollow' do
       follower = create(:user)
 
       follower.follow(user)

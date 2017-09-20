@@ -34,7 +34,7 @@ RSpec.describe AdvancedSearchForm do
       end
     end
 
-    context 'when till param' do
+    context 'with till param' do
       it 'returns posts whose created_at are on or before the till param' do
         Timecop.freeze(Time.current) do
           (1..3).each { |num| create(:post, created_at: num.days.ago) }
