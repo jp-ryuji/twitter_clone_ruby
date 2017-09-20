@@ -45,6 +45,18 @@ RSpec.describe User, type: :model do
         user = build(:user, email: 'text@example.com')
         expect(user).to be_valid
       end
+
+      it 'is case insensitive' do
+        email = 'Test@EXAMPLE.COM'
+        create(:user, email: email)
+        expect { create(:user, email: email.downcase) }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+
+      it 'is saved in lowercase letters' do
+        email = 'Test@EXAMPLE.COM'
+        create(:user, email: email)
+        expect(User.find_by(email: email.downcase)).to be_truthy
+      end
     end
 
     describe 'password' do
@@ -58,7 +70,7 @@ RSpec.describe User, type: :model do
         expect(user.errors[:password]).to include("can't be blank")
       end
 
-      it 'is more than 5 characters' do
+      it 'is equal to or more than 6 characters' do
         user = build(:user, password: 'aaaaa')
         expect(user).to be_invalid
         expect(user.errors[:password]).to include('is too short (minimum is 6 characters)')
@@ -86,6 +98,18 @@ RSpec.describe User, type: :model do
 
         user = build(:user, screen_name: 'a' * 15)
         expect(user).to be_valid
+      end
+
+      it 'is case insensitive' do
+        screen_name = 'Abc_123'
+        create(:user, screen_name: screen_name)
+        expect { create(:user, screen_name: screen_name.downcase) }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+
+      it 'is saved in lowercase letters' do
+        screen_name = 'Abc_123'
+        create(:user, screen_name: screen_name)
+        expect(User.find_by(screen_name: screen_name.downcase)).to be_truthy
       end
 
       it 'consists of alphanumeric characters and underscores only' do
@@ -119,7 +143,7 @@ RSpec.describe User, type: :model do
   end
 
   describe '#follow, #unfollow' do
-    it 'enables to follow' do
+    it 'enables to follow and unfollow' do
       follower = create(:user)
 
       follower.follow(user)

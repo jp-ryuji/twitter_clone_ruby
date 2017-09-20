@@ -1,12 +1,18 @@
 namespace :dev do
   require 'factory_girl_rails'
+  require 'faker'
 
   desc 'Generate test data'
-  task :generate_data, [:users_num, :post_max_num] => :environment do |_, args|
+  task :generate_data, [:users_num, :post_min_num, :post_max_num] => :environment do |_, args|
     set_args(args)
 
     @args[:users_num].times do
-      FactoryGirl.create(:user, posts_count: rand(5..@args[:post_max_num]))
+      screen_name = loop do
+        screen_name = Faker::Twitter.screen_name[0..14] # The method can return a word with more than 15 chars.
+        break screen_name unless User.exists?(screen_name: screen_name)
+      end
+
+      FactoryGirl.create(:user, screen_name: screen_name, posts_count: rand(@args[:post_min_num]..@args[:post_max_num]))
     end
 
     create_test_user
@@ -28,5 +34,6 @@ end
 def set_args(args)
   @args = {}
   @args[:users_num] = (args.users_num || 10).to_i
+  @args[:post_min_num] = (args.post_min_num || 5).to_i
   @args[:post_max_num] = (args.post_max_num || 10).to_i
 end

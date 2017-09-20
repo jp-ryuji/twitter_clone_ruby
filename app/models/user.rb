@@ -12,11 +12,16 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   SCREEN_NAME_REGEXP = /\A[0-9a-zA-Z_]{1,15}\z/i
 
-  validates :email, presence: true, uniqueness: true
+  before_validation -> {
+    self.email = self.email.downcase
+    self.screen_name = self.screen_name.downcase
+  }
+
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :email, format: { with: EMAIL_REGEX }, allow_blank: true
   validates :password, presence: true, on: :create
   validates :password, length: { minimum: 6 }, allow_blank: true
-  validates :screen_name, presence: true, uniqueness: true
+  validates :screen_name, presence: true, uniqueness: { case_sensitive: false }
   validates :screen_name, format: { with: SCREEN_NAME_REGEXP }, allow_blank: true
   validates :screen_name, exclusion: { in: UNAVAILABLE_SCREEN_NAMES }, allow_blank: true
   validates :name, length: { maximum: 20 }, allow_blank: true
