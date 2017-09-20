@@ -109,6 +109,8 @@ GEM
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
+    flatpickr_rails (1.1.0)
+      railties (>= 3.0)
     formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -379,6 +381,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   faker
+  flatpickr_rails
   guard
   guard-rspec
   guard-rubocop
