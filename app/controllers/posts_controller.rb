@@ -8,8 +8,17 @@ class PostsController < ApplicationController
     end
   end
 
+  def advanced_search
+    @form = AdvancedSearchForm.new(permitted_params)
+    @posts = @form.search
+  end
+
   private
     def post_params
       params.require(:post).permit(:content)
+    end
+
+    def permitted_params
+      params.permit(posts: AdvancedSearchForm::FORM_FIELDS)
     end
 end

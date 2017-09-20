@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/following', to: 'users#following_users'
   get '/followers', to: 'users#followers'
   get '/who_to_follow/suggestions', to: 'users#who_to_follow', as: 'who_to_follow'
+  get '/search-advanced', to: 'posts#advanced_search'
 
   resources :users, param: :screen_name, path: '/', only: [:show]
   root to: 'home#index'

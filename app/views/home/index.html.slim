@@ -10,10 +10,4 @@
     .col-sm-2
       = f.submit 'Post', class: 'btn btn-primary'
 
-table.table.table-hover
-  tbody
-    - @posts.each do |post|
-      tr
-        td= post.user.screen_name
-        td= post.content
-        td= post.created_at.strftime('%Y-%m-%d %H:%M:%S')
+== render 'shared/posts', posts: @posts

@@ -27,4 +27,15 @@ module ApplicationHelper
     else 'alert-info'
     end
   end
+
+  def link_to_reset(resource = nil, path = nil, *filters, **options)
+    path ||= send("#{params[:controller]}_path")
+    return unless record_filtered?(resource, *filters)
+    link_to 'Reset', path, options
+  end
+
+  def record_filtered?(resource, *filters)
+    resource ||= params[:controller].singularize
+    (params.fetch(resource, {}).keys.map(&:to_sym) & filters.flatten).any?
+  end
 end
