@@ -17,13 +17,13 @@ class AdvancedSearchForm
   end
 
   def initialize(params)
-    posts = params[:posts] || {}
-    FORM_FIELDS.each { |f| send("#{f}=", posts[f]) }
+    @posts = params[:posts] || {}
+    FORM_FIELDS.each { |f| send("#{f}=", @posts[f]) }
   end
 
   # TODO Full text search should be considered for keyword search.
   def search
-    query = Post.all
+    return Post.none if @posts.empty?
     query = query.joins(:user).where('users.screen_name = ?', from) if from.present?
     query = query.where('posts.created_at >= ?', Time.zone.parse(since)) if since.present?
     query = query.where('posts.created_at < ?', Time.zone.parse(till) + 1.day) if till.present?

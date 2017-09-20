@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe AdvancedSearchForm do
   describe '#search' do
     context 'with no params' do
-      it 'returns all posts' do
-        create_list(:post, 5)
+      it 'returns no posts' do
+        create_list(:post, 2)
 
         form = AdvancedSearchForm.new({})
-        expect(form.search.size).to eq(5)
+        expect(form.search.size).to eq(0)
       end
     end
 
