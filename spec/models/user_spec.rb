@@ -51,6 +51,12 @@ RSpec.describe User, type: :model do
         create(:user, email: email)
         expect { create(:user, email: email.downcase) }.to raise_error(ActiveRecord::RecordInvalid)
       end
+
+      it 'is saved in lowercase letters' do
+        email = 'Test@EXAMPLE.COM'
+        create(:user, email: email)
+        expect(User.find_by(email: email.downcase)).to be_truthy
+      end
     end
 
     describe 'password' do

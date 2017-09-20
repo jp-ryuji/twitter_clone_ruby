@@ -12,6 +12,8 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   SCREEN_NAME_REGEXP = /\A[0-9a-zA-Z_]{1,15}\z/i
 
+  before_validation :downcase_email
+
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :email, format: { with: EMAIL_REGEX }, allow_blank: true
   validates :password, presence: true, on: :create
@@ -33,4 +35,9 @@ class User < ApplicationRecord
   def unfollow(other)
     following_users.destroy(other)
   end
+
+  private
+    def downcase_email
+      self.email = self.email.downcase
+    end
 end
