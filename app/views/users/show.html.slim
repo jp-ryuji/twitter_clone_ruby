@@ -4,8 +4,4 @@ h4= 'Tweet'
 / TODO The number of following users
 / TODO The number of followers
 
-table.table.table-hover
-  tbody
-    - @user.posts.each do |post|
-      tr
-        td= post.content
+== render 'shared/posts', posts: @posts, my_posts: true

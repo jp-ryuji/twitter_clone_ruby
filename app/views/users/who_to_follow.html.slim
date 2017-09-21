@@ -6,3 +6,5 @@ table.table.table-hover
       tr
         td= user.screen_name
         td= link_to 'Follow', user_follow_path(user_id: user.id), method: :post, class: 'btn btn-primary'
+
+== render 'shared/pagination', collection: @users
