@@ -16,6 +16,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'dotenv-rails'
 gem 'virtus'
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
 
 # Authentication
 gem 'sorcery'
