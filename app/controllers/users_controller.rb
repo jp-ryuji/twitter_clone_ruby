@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(screen_name: params[:screen_name])
+    @posts = @user.posts.page(params[:page])
   end
 
   def new
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def who_to_follow
-    @users = User.not_following_users(current_user)
+    @users = User.not_following_users(current_user).page(params[:page])
   end
 
   # TODO follow and unfollow should be done by ajax.
@@ -37,11 +38,11 @@ class UsersController < ApplicationController
   end
 
   def following_users
-    @following_users = current_user.following_users
+    @following_users = current_user.following_users.page(params[:page])
   end
 
   def followers
-    @followers = current_user.followers
+    @followers = current_user.followers.page(params[:page])
     @following_user_ids = current_user.following_user_ids
   end
 

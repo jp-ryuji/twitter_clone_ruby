@@ -1,0 +1,4 @@
+- if collection.any?
+  = paginate collection, theme: 'twitter-bootstrap-4'
+  / TODO Maybe the following line (counting the number of posts) doen't work with huge amount of data.
+  = page_entries_info collection

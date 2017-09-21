@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   def advanced_search
     @form = AdvancedSearchForm.new(permitted_params)
-    @posts = @form.search
+    @posts = @form.search.page(params[:page])
   end
 
   private

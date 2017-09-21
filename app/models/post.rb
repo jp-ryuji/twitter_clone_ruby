@@ -9,7 +9,7 @@ class Post < ApplicationRecord
     joins(user: :followed_relations)
       .includes(:user)
       .where('followings.follower_id = ?', follower.id)
-      .order('created_at DESC')
+      .order('posts.created_at DESC')
   end
 end
 

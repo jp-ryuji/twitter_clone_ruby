@@ -2,6 +2,9 @@ table.table.table-hover
   tbody
     - posts.each do |post|
       tr
-        td= post.user.screen_name
+        - if !defined?(my_posts) || (defined?(my_posts) && my_posts == false)
+          td= post.user.screen_name
         td= post.content
         td= post.created_at.strftime('%Y-%m-%d %H:%M:%S')
+
+== render 'shared/pagination', collection: posts

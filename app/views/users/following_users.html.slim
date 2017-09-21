@@ -6,3 +6,5 @@ table.table.table-hover
       tr
         td= user.screen_name
         td= link_to 'Unfollow', user_unfollow_path(user_id: user.id), method: :delete, class: 'btn btn-warning'
+
+== render 'shared/pagination', collection: @following_users

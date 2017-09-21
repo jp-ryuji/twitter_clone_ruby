@@ -10,3 +10,5 @@ table.table.table-hover
           td= link_to 'Unfollow', user_unfollow_path(user_id: user.id), method: :delete, class: 'btn btn-warning'
         - else
           td= link_to 'Follow', user_follow_path(user_id: user.id), method: :post, class: 'btn btn-primary'
+
+== render 'shared/pagination', collection: @followers
