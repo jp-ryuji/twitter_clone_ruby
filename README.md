@@ -9,13 +9,16 @@
 ### Database setup
 
 ```shell
-bin/rake db:setup
+bin/rails db:setup
 ```
 
 ### Test Data setup
 
 ```shell
-bin/rake dev:generate_data
+bin/rails dev:generate_data
+
+# You can specify arguments
+bin/rails 'dev:generate_data[100,10,20]'
 ```
 
 ### Run Unit Tests/Specs
