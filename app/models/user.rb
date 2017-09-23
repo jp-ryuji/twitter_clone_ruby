@@ -13,8 +13,8 @@ class User < ApplicationRecord
   SCREEN_NAME_REGEXP = /\A[0-9a-zA-Z_]{1,15}\z/i
 
   before_validation -> {
-    self.email = self.email.downcase
-    self.screen_name = self.screen_name.downcase
+    self.email = self.email.downcase if self.email
+    self.screen_name = self.screen_name.downcase if self.screen_name
   }
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
