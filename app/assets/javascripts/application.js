@@ -13,7 +13,6 @@
 //= require jquery3
 //= require rails-ujs
 //= require popper
-//= require tether
 //= require bootstrap
 //= require flatpickr
 //= require_tree .
