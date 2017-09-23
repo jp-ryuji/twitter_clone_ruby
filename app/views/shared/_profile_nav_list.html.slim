@@ -1,0 +1,11 @@
+/ TODO The chosen link should look different from the others.
+/ TODO Show the number of tweets, following_users and followers.
+ul.nav
+  li.nav-item
+    .nav-link= link_to 'Tweet', user_path(screen_name: current_user.screen_name)
+  li.nav-item
+    .nav-link= link_to 'Following Users', following_path
+  li.nav-item
+    .nav-link= link_to 'Followers', followers_path
+  li.nav-item
+    .nav-link= link_to 'Who to follow', who_to_follow_path
