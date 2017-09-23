@@ -1,23 +1,32 @@
-/ TODO Add nav
-- if logged_in?
-  = link_to "#{current_user.screen_name} (#{current_user.email})", user_path(screen_name: current_user.screen_name)
-  =<> '|'
-  = link_to 'Home', root_path
-  =<> '|'
-  = link_to 'Following Users', following_path
-  =<> '|'
-  = link_to 'Followers', followers_path
-  =<> '|'
-  = link_to 'Who to follow', who_to_follow_path
-  =<> '|'
-  = link_to 'Advanced Search', search_advanced_path
-  =<> '|'
-  = link_to 'Logout', logout_path, method: :delete
-  br
-  br
-- else
-  = link_to 'Sign up', signup_path
-  =<> '|'
-  = link_to 'Login', login_path
-  br
-  br
+.container
+  / FIXME This structure of the row and nav seems wrong to me (nav is not nested under nav. Without row, the style collpases.), but it works. Investigate it later.
+  .row
+  - if logged_in?
+    nav.navbar.navbar-expand-sm
+      button.navbar-toggler.navbar-toggler-right aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button"
+        span.navbar-toggler-icon
+      #navbarNavDropdown.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            .nav-link= link_to root_path do
+              | Home
+              span.sr-only (current)
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            .nav-link= link_to 'Advanced Search', search_advanced_path
+          li.nav-item.dropdown
+            a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#"
+              / FIXME Should be a user's photo.
+              | dropdown
+            .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+              .dropdown-item= link_to "#{current_user.screen_name} (#{current_user.email})", user_path(screen_name: current_user.screen_name)
+              .dropdown-item= link_to 'Logout', logout_path, method: :delete
+  - else
+    nav.navbar.navbar-expand-sm
+      ul.navbar-nav.ml-auto
+        - unless current_page?(signup_path)
+          li.nav-item
+            .nav-link= link_to 'Sign up', signup_path
+        - unless current_page?(login_path)
+          li.nav-item
+            .nav-link= link_to 'Login', login_path
