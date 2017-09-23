@@ -28,7 +28,6 @@ gem 'jquery-rails'
 gem 'popper_js'
 gem 'slim-rails'
 gem 'bootstrap'
-gem 'tether-rails' # TODO This might not be necessary.
 gem 'flatpickr_rails'
 
 group :development, :test do
