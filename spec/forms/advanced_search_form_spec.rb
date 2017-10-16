@@ -18,7 +18,7 @@ RSpec.describe AdvancedSearchForm do
 
         form = AdvancedSearchForm.new(posts: { from: user.screen_name })
         expect(form.search.size).to eq(2)
-        form.search.all? { |p| p.user == user }
+        expect(form.search.all? { |p| p.user == user }).to be_truthy
       end
     end
 
@@ -29,7 +29,7 @@ RSpec.describe AdvancedSearchForm do
 
           form = AdvancedSearchForm.new(posts: { since: 2.days.ago.strftime('%Y%m%d') })
           expect(form.search.size).to eq(2)
-          form.search.all? { |p| p.created_at >= 2.days.ago }
+          expect(form.search.all? { |p| p.created_at >= 2.days.ago }).to be_truthy
         end
       end
     end
@@ -41,7 +41,7 @@ RSpec.describe AdvancedSearchForm do
 
           form = AdvancedSearchForm.new(posts: { till: 2.days.ago.strftime('%Y%m%d') })
           expect(form.search.size).to eq(2)
-          form.search.all? { |p| p.created_at <= 2.days.ago }
+          expect(form.search.all? { |p| p.created_at <= 2.days.ago }).to be_truthy
         end
       end
     end
