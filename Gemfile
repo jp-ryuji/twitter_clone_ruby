@@ -52,6 +52,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'bullet'
   gem 'guard-rspec', require: false
+  gem 'rubocop', require: false
   gem 'guard-rubocop'
   gem 'letter_opener'
   gem 'letter_opener_web'
@@ -68,6 +69,5 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'simplecov', require: false
-  gem 'rubocop'
   gem 'timecop'
 end
