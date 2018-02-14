@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
-  before_action :set_user, only: [:follow, :unfollow]
+  skip_before_action :require_login, only: %i[new create]
+  before_action :set_user, only: %i[follow unfollow]
 
   def show
     @user = User.find_by(screen_name: params[:screen_name])
@@ -25,7 +27,7 @@ class UsersController < ApplicationController
     @users = User.not_following_users(current_user).page(params[:page])
   end
 
-  # TODO follow and unfollow should be done by ajax.
+  # TODO: follow and unfollow should be done by ajax.
   # TODO fallback_location in follow and unfollow can be changed.
   def follow
     current_user.follow(@user)
@@ -47,11 +49,12 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:email, :screen_name, :password)
-    end
 
-    def set_user
-      @user = User.find(params[:user_id])
-    end
+  def user_params
+    params.require(:user).permit(:email, :screen_name, :password)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 end

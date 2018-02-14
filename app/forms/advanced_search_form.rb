@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdvancedSearchForm
   include Virtus.model
   include ActiveModel::Model
@@ -21,7 +23,8 @@ class AdvancedSearchForm
     FORM_FIELDS.each { |f| send("#{f}=", @posts[f]) }
   end
 
-  # TODO Full text search should be considered for keyword search.
+  # TODO: Full text search should be considered for keyword search.
+  # rubocop:disable Metrics/AbcSize
   def search
     return Post.none if @posts.empty?
 
@@ -31,5 +34,5 @@ class AdvancedSearchForm
     query = query.where('posts.created_at < ?', Time.zone.parse(till) + 1.day) if till.present?
     query
   end
+  # rubocop:enable  Metrics/AbcSize
 end
-

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
@@ -12,10 +14,10 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   SCREEN_NAME_REGEXP = /\A[0-9a-zA-Z_]{1,15}\z/i
 
-  before_validation -> {
-    self.email = self.email.downcase if self.email
-    self.screen_name = self.screen_name.downcase if self.screen_name
-  }
+  before_validation do
+    self.email = email.downcase if email
+    self.screen_name = screen_name.downcase if screen_name
+  end
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :email, format: { with: EMAIL_REGEX }, allow_blank: true
@@ -28,7 +30,7 @@ class User < ApplicationRecord
 
   def self.not_following_users(myself)
     where.not(id: myself.id)
-      .where.not(id: myself.following_user_ids)
+         .where.not(id: myself.following_user_ids)
   end
 
   def follow(other)

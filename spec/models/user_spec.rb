@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -26,13 +28,13 @@ RSpec.describe User, type: :model do
       end
 
       it 'does not allow invalid format' do
-        invalid_email_formats = %w(
+        invalid_email_formats = %w[
           user@example,com
           user_at_foo.org
           user.name@example.
           foo@bar_baz.com
           foo@bar..com
-        )
+        ]
 
         invalid_email_formats.each do |email|
           user = build(:user, email: email)
