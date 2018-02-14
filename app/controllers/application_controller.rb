@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   add_flash_types :success, :error
 
@@ -5,7 +7,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   protected
-    def not_authenticated
-      redirect_to login_url, alert: 'You need to login first to access this page.'
-    end
+
+  def not_authenticated
+    redirect_to login_url, alert: 'You need to login first to access this page.'
+  end
 end
