@@ -54,6 +54,7 @@ group :development do
   gem 'guard-rspec', require: false
   gem 'rubocop', require: false
   gem 'guard-rubocop'
+  gem 'overcommit'
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'rails-erd'
