@@ -1,0 +1,35 @@
+AllCops:
+  DisplayCopNames: true
+  Include:
+    - Rakefile
+    - config.ru
+    - config/initializer/*
+  Exclude:
+    - db/**/*
+    - bin/*
+    - config/**/*
+    - vendor/**/*
+    - lib/tasks/dev.rake
+Bundler/OrderedGems:
+  Exclude:
+    - Gemfile
+Metrics/LineLength:
+  Max: 150
+Metrics/MethodLength:
+  Max: 15
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
+    - spec/factories/*
+    - spec/support/*
+    - Guardfile
+Naming/FileName:
+  Exclude:
+    - Gemfile
+    - Guardfile
+Rails:
+  Enabled: true
+Rails/InverseOf:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
