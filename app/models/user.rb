@@ -14,10 +14,10 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   SCREEN_NAME_REGEXP = /\A[0-9a-zA-Z_]{1,15}\z/i
 
-  before_validation -> {
+  before_validation do
     self.email = email.downcase if email
     self.screen_name = screen_name.downcase if screen_name
-  }
+  end
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :email, format: { with: EMAIL_REGEX }, allow_blank: true
