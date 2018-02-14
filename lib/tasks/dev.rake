@@ -1,5 +1,5 @@
 namespace :dev do
-  require 'factory_girl_rails'
+  require 'factory_bot_rails'
   require 'faker'
 
   desc 'Generate test data'
@@ -12,7 +12,7 @@ namespace :dev do
         break screen_name unless User.exists?(screen_name: screen_name)
       end
 
-      FactoryGirl.create(:user, screen_name: screen_name, posts_count: rand(@args[:post_min_num]..@args[:post_max_num]))
+      FactoryBot.create(:user, screen_name: screen_name, posts_count: rand(@args[:post_min_num]..@args[:post_max_num]))
     end
 
     create_test_user
