@@ -1,0 +1,6 @@
+= simple_form_for([:admin, @user]) do |f|
+  = f.error_notification
+  = f.input :email
+  = f.input :screen_name
+  = f.button :submit, class: 'btn btn-primary'
+  =< link_to 'Cancel', :back, class: 'btn btn-default'

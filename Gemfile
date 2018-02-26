@@ -30,6 +30,7 @@ gem 'popper_js'
 gem 'slim-rails'
 gem 'bootstrap'
 gem 'flatpickr_rails'
+gem 'simple_form'
 
 group :development, :test do
   gem 'rspec-rails'
