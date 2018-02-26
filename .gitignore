@@ -202,7 +202,7 @@ tmtags
 # swap
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
-# persistent undo 
+# persistent undo
 *.un~
 # session
 Session.vim
@@ -212,3 +212,8 @@ Session.vim
 
 
 .envrc
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

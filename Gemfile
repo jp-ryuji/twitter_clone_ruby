@@ -18,6 +18,7 @@ gem 'dotenv-rails'
 gem 'virtus'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem 'webpacker'
 
 # Authentication
 gem 'sorcery'
@@ -58,6 +59,7 @@ group :development do
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'rails-erd'
+  gem 'foreman'
 end
 
 group :test do
