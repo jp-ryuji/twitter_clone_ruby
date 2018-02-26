@@ -3,4 +3,8 @@
   .row
     nav.navbar.navbar-expand-sm
       ul.navbar-nav
+       li = link_to 'Users', admin_users_path
+       = '|'
+       li = link_to 'Posts', admin_posts_path
+       = '|'
        li = link_to 'Logout', logout_path, method: :delete

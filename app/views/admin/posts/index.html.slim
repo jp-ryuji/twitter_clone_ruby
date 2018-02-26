@@ -1,0 +1,28 @@
+h3. Post List
+
+.row
+  .col.pull-right
+    = link_to 'New', new_admin_post_path, class: 'btn btn-primary'
+br
+
+.row
+  .col
+    table.table.table-hover
+      thead
+        tr
+          th User
+          th Content
+          th Created at
+          th
+          th
+      tbody
+        - @posts.each do |post|
+          tr
+            td = post.user.screen_name
+            td = post.content
+            td = l post.created_at, format: :long
+            td = link_to 'Edit', edit_admin_post_path(post), class: 'btn btn-success'
+            td = link_to 'Destroy', admin_post_path(post), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger'
+.row
+  .col
+    = paginate @posts, theme: 'twitter-bootstrap-4'
