@@ -5,7 +5,7 @@ class AdvancedSearchForm
   include ActiveModel::Model
 
   def self.model_name
-    ActiveModel::Name.new(self, nil, 'Posts')
+    ActiveModel::Name.new(self, nil, 'Post')
   end
 
   FORM_FIELDS = %i[
@@ -28,8 +28,8 @@ class AdvancedSearchForm
   def search
     return Post.none if @posts.empty?
 
-    query = Post.all.includes(:user).order('posts.created_at DESC')
-    query = query.joins(:user).where('users.screen_name = ?', from) if from.present?
+    query = Post.includes(:user).order('posts.created_at desc')
+    query = query.joins(:user).where(users: { screen_name: from }) if from.present?
     query = query.where('posts.created_at >= ?', Time.zone.parse(since)) if since.present?
     query = query.where('posts.created_at < ?', Time.zone.parse(till) + 1.day) if till.present?
     query
