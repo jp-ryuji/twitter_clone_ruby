@@ -17,6 +17,12 @@ Rails.application.routes.draw do
   get '/who_to_follow/suggestions', to: 'users#who_to_follow', as: 'who_to_follow'
   get '/search-advanced', to: 'posts#advanced_search'
 
+  namespace :admin do
+    resources :users
+
+    root to: 'users#index'
+  end
+
   resources :users, param: :screen_name, path: '/', only: [:show]
   root to: 'home#index'
 end
