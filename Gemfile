@@ -18,6 +18,7 @@ gem 'dotenv-rails'
 gem 'virtus'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
+gem 'webpacker'
 
 # Authentication
 gem 'sorcery'
