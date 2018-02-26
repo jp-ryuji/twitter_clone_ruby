@@ -64,9 +64,7 @@ group :test do
   gem 'capybara', '~> 2.13'
   gem 'capybara-email'
   gem 'email_spec'
-  gem 'poltergeist', require: false
   gem 'selenium-webdriver', require: false
-  gem 'database_cleaner'
   gem 'vcr'
   gem 'webmock'
   gem 'simplecov', require: false
