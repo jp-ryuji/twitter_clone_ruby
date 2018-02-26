@@ -8,6 +8,7 @@ html
     = javascript_include_tag 'application'
     = javascript_pack_tag    'application'
   body
+    = render 'layouts/admin/header'
     .container-fluid
       = flash_messages
       = yield
