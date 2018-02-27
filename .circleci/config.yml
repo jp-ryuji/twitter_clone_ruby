@@ -7,7 +7,9 @@ jobs:
   build:
     parallelism: 3
     docker:
-      - image: circleci/ruby:2.4.3-node
+      # Use image with browsers support
+      # ref: http://docs.knapsackpro.com/2017/circleci-2-0-capybara-feature-specs-selenium-webdriver-with-chrome-headless
+      - image: circleci/ruby:2.4.3-node-browsers
         environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
