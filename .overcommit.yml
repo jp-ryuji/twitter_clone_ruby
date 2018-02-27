@@ -29,6 +29,11 @@ PreCommit:
     enabled: true
     command: ['bundle', 'exec', 'scss-lint', 'app/assets/stylesheets']
     on_warn: fail # Treat all warnings as failures
+  SlimLint:
+    enabled: true
+    command: ['bundle', 'exec', 'slim-lint', 'app/views']
+    on_warn: fail # Treat all warnings as failures
+    quiet: true # Hide ruby version check warnings at whitequark/parser
 
 #PostCheckout:
 #  ALL: # Special hook name that customizes all hooks of this type

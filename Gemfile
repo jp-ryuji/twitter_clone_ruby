@@ -62,6 +62,7 @@ group :development do
   gem 'rails-erd'
   gem 'foreman'
   gem 'scss_lint', require: false
+  gem 'slim_lint', require: false
 end
 
 group :test do

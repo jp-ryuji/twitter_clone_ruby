@@ -1,0 +1,7 @@
+exclude:
+  - 'app/views/kaminari/**/*.slim'
+linters:
+  LineLength:
+    enabled: false
+  RuboCop:
+    enabled: false
