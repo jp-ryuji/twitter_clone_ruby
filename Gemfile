@@ -44,6 +44,7 @@ group :development, :test do
   gem 'guard'
   gem 'awesome_print'
   gem 'faker'
+  gem 'bundler-audit', require: false
 end
 
 group :development do
