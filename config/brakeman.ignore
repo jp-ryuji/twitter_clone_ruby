@@ -1,0 +1,46 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dangerous Send",
+      "warning_code": 23,
+      "fingerprint": "65745f62ca2ad1a7bc30396024d27f2b7db056f1d1804556604b4381554b3e50",
+      "check_name": "Send",
+      "message": "User controlled method execution",
+      "file": "app/helpers/application_helper.rb",
+      "line": 35,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
+      "code": "send(\"#{params[:controller]}_path\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ApplicationHelper",
+        "method": "link_to_reset"
+      },
+      "user_input": "params[:controller]",
+      "confidence": "High",
+      "note": "This should be fixed."
+    },
+    {
+      "warning_type": "Unscoped Find",
+      "warning_code": 82,
+      "fingerprint": "af6e27fdc8a933a6cad4a13e9e4e1eb90fb771b3452222937a64f8411c7e6d84",
+      "check_name": "UnscopedFind",
+      "message": "Unscoped call to Post#find",
+      "file": "app/controllers/admin/posts_controller.rb",
+      "line": 45,
+      "link": "https://brakemanscanner.org/docs/warning_types/unscoped_find/",
+      "code": "Post.find(params[:id])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Admin::PostsController",
+        "method": "set_post"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    }
+  ],
+  "updated": "2018-02-27 20:40:16 +0900",
+  "brakeman_version": "4.2.0"
+}
