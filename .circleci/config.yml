@@ -47,6 +47,11 @@ jobs:
           paths:
             - vendor/bundle
 
+      # Run bundle audit check
+      - run:
+          name: Bundle Audit Check
+          command: bundle exec bundle-audit check --update
+
       # Only necessary if app uses webpacker or yarn in some other way
       - restore_cache:
           keys:
