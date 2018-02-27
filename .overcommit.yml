@@ -25,6 +25,10 @@ PreCommit:
     exclude:
       - 'spec/fixtures/**/*'
       - 'docs/**/*'
+  ScssLint:
+    enabled: true
+    command: ['bundle', 'exec', 'scss-lint', 'app/assets/stylesheets']
+    on_warn: fail # Treat all warnings as failures
 
 #PostCheckout:
 #  ALL: # Special hook name that customizes all hooks of this type
