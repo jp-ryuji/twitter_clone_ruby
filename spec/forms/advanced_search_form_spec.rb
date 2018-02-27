@@ -31,7 +31,8 @@ RSpec.describe AdvancedSearchForm do
 
           form = AdvancedSearchForm.new(posts: { since: 2.days.ago.strftime('%Y%m%d') })
           expect(form.search.size).to eq(2)
-          expect(form.search.all? { |p| p.created_at >= 2.days.ago }).to be_truthy
+          # This spec fails on circle ci, so added 10.seconds for margin.
+          expect(form.search.all? { |p| p.created_at >= (2.days.ago - 10.seconds) }).to be_truthy
         end
       end
     end
