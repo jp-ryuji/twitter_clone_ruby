@@ -61,6 +61,7 @@ group :development do
   gem 'letter_opener_web'
   gem 'rails-erd'
   gem 'foreman'
+  gem 'scss_lint', require: false
 end
 
 group :test do
