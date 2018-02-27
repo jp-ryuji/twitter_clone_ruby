@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User sign up', type: :system do
-  it 'proceeds to sign up', js: true do
+  it 'proceeds to sign up' do
     visit root_path
 
     click_on 'Sign up'
