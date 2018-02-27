@@ -76,6 +76,11 @@ jobs:
           name: Database setup
           command: bin/rails db:schema:load --trace
 
+      # Run brakeman
+      - run:
+          name: Brakeman
+          command: bundle exec brakeman -5 -A -w 1 -z
+
       # Run rspec in parallel
       - type: shell
         command: |

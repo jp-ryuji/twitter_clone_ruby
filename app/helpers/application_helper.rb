@@ -31,6 +31,7 @@ module ApplicationHelper
   end
 
   def link_to_reset(resource = nil, path = nil, *filters, **options)
+    # FIXME: Dangerous Send (User controlled method execution)
     path ||= send("#{params[:controller]}_path")
     return unless record_filtered?(resource, *filters)
     link_to 'Reset', path, options
