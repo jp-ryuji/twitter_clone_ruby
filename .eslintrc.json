@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jquery": true
+  },
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": [ "error", 2 ],
+    "semi": [ "error", "never" ],
+    "linebreak-style": [ "error", "unix" ],
+    "max-len": [ "error", { "code": 150, "ignoreComments": true } ],
+    "no-new": [ "off" ],
+    "no-underscore-dangle": [ "error", { "allowAfterThis": true } ],
+    "no-unused-vars": [ "error", { "argsIgnorePattern": "^_" } ]
+  }
+}
