@@ -8,7 +8,8 @@ module Admin
     before_action :set_user, only: %i[show edit update destroy]
 
     def index
-      @users = User.order(created_at: :desc).page(params[:page])
+      @admin_users_search_form = Admin::UsersSearchForm.new(search_params)
+      @users = @admin_users_search_form.search.page(params[:page])
     end
 
     def show; end
@@ -50,6 +51,11 @@ module Admin
 
     def user_params
       params.require(:user).permit(:email, :screen_name)
+    end
+
+    def search_params
+      return {} if params[:admin_users_search_form].blank?
+      params.require(:admin_users_search_form).permit(Admin::UsersSearchForm::PARAMS)
     end
   end
 end
