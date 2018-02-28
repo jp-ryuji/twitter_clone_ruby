@@ -1,8 +1,14 @@
 h3. User List
 
-// FIXME: The style should be fixed.
 .row
-  .col-sm-4
+  .col-3
+    = form_for @admin_users_search_form, url: admin_users_path, method: :get do |f|
+      .input-group.mb-3
+        = f.text_field :search_text, class: 'form-control', placeholder: 'Partial search for email and screen_name'
+        .input-group-append
+          = f.submit 'Search', class: 'btn btn-outline-secondary', style: 'width: 100px;'
+  // FIXME: The style should be fixed.
+  .col-3
     = form_tag import_csv_admin_users_path, multipart: true do
       .input-group
         label.input-group-prepend
