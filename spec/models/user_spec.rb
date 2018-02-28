@@ -5,16 +5,6 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
-  it 'has id_token' do
-    # NOTE: Returns a User's not saved.
-    user = build(:user)
-    expect(user.id_token).to be_nil
-    # NOTE: Use save! instead of save in specs to raise an exception when there is.
-    #   You might need to user.reload sometimes in specs although this is not the case here.
-    user.save!
-    expect(user.id_token).to be_present
-  end
-
   it 'has many followers' do
     user.followers << create_list(:user, 2)
     expect(user.followers.size).to eq(2)
