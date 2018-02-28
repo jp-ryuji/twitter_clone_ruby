@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   get '/search-advanced', to: 'posts#advanced_search'
 
   namespace :admin do
-    resources :users
+    resources :users do
+      post :import_csv, on: :collection
+    end
     resources :posts
 
     root to: 'users#index'

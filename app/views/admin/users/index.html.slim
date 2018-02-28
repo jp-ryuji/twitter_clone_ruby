@@ -1,9 +1,17 @@
 h3. User List
 
-/ .row
-/   .col.pull-right
-/     = link_to 'New', new_admin_user_path, class: 'btn btn-primary'
-/ br
+// FIXME: The style should be fixed.
+.row
+  .col-sm-4
+    = form_tag import_csv_admin_users_path, multipart: true do
+      .input-group
+        label.input-group-prepend
+          span.btn.btn-info
+            | Choose File
+            = file_field_tag :file, style: 'display:none'
+        = text_field_tag :filename, nil, readonly: true, class: 'form-control'
+        .input-group-append
+          = submit_tag 'CSV Import', class: 'btn btn-primary'
 
 .row
   .col

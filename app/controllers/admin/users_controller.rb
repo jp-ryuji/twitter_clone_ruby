@@ -2,6 +2,9 @@
 
 module Admin
   class UsersController < Admin::BaseController
+    # NOTE: Doesn't need to use concern since only this controller needs the feature. This is an example.
+    include CsvImporter
+
     before_action :set_user, only: %i[show edit update destroy]
 
     def index
