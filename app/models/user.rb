@@ -14,6 +14,9 @@ class User < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   SCREEN_NAME_REGEXP = /\A[0-9a-zA-Z_]{1,15}\z/i
 
+  validates :id_token, presence: true, uniqueness: true
+
+  before_validation -> { self.id_token = SecureRandom.uuid if id_token.blank? }
   before_validation do
     self.email = email.downcase if email
     self.screen_name = screen_name.downcase if screen_name
