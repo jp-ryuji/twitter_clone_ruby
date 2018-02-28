@@ -40,4 +40,9 @@ class User < ApplicationRecord
   def unfollow(other)
     following_users.destroy(other)
   end
+
+  def register
+    Code.new(self, :code).assign_value
+    save
+  end
 end
