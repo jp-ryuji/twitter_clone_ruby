@@ -6,13 +6,13 @@ RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
   it 'has id_token' do
-    # NOTE: Returns a Post instance that's not saved.
-    post = build(:post)
-    expect(post.id_token).to be_nil
+    # NOTE: Returns a User's not saved.
+    user = build(:user)
+    expect(user.id_token).to be_nil
     # NOTE: Use save! instead of save in specs to raise an exception when there is.
-    #   You might need to post.reload sometimes in specs although this is not the case here.
-    post.save!
-    expect(post.id_token).to be_present
+    #   You might need to user.reload sometimes in specs although this is not the case here.
+    user.save!
+    expect(user.id_token).to be_present
   end
 
   it 'has many followers' do
