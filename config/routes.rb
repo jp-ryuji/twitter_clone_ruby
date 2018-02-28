@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users do
       post :import_csv, on: :collection
+      get :export_csv, on: :collection
     end
     resources :posts
 

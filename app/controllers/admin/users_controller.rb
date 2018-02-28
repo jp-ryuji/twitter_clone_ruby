@@ -2,8 +2,10 @@
 
 module Admin
   class UsersController < Admin::BaseController
-    # NOTE: Doesn't need to use concern since only this controller needs the feature. This is an example.
+    # NOTE: Using concern is not necessary here because only this controller needs the feature. This is an example.
+    # NOTE: Common names for cocern modules are ...er or ...able. No strict rule though.
     include CsvImporter
+    include CsvExporter
 
     before_action :set_user, only: %i[show edit update destroy]
 

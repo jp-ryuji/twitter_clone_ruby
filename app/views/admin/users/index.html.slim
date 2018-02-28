@@ -18,6 +18,10 @@ h3. User List
         = text_field_tag :filename, nil, readonly: true, class: 'form-control'
         .input-group-append
           = submit_tag 'CSV Import', class: 'btn btn-primary'
+  .col-1
+    = form_for @admin_users_search_form, url: export_csv_admin_users_path(format: :csv), method: :get do |f|
+      = f.hidden_field :search_text
+      = f.submit 'CSV Export', class: 'btn btn-primary btn-block'
 
 .row
   .col
