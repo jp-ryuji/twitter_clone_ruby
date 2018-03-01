@@ -3,7 +3,7 @@
 ### Required software
 
 * Ruby 2.4.3
-* Ruby on Rails 5.1.4
+* Ruby on Rails 5.1.5
 * Postgresql 9.3 or later
 
 ### Database setup
