@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, param: :screen_name, path: '/', only: [:show]
+
   root to: 'home#index'
 end
