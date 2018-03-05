@@ -27,6 +27,14 @@ Rails.application.routes.draw do
     root to: 'users#index'
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :show] do
+        resources :posts, only: [:show]
+      end
+    end
+  end
+
   resources :users, param: :screen_name, path: '/', only: [:show]
 
   root to: 'home#index'
