@@ -10,6 +10,7 @@ AllCops:
     - config/**/*
     - vendor/**/*
     - lib/tasks/dev.rake
+    - lib/tasks/auto_annotate_models.rake
 Bundler/OrderedGems:
   Exclude:
     - Gemfile
