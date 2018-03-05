@@ -38,6 +38,11 @@ gem 'simple_form'
 #   Because the default rails JSON parser is notorious for being slow.
 gem 'active_model_serializers'
 
+# Image upload
+gem 'carrierwave' # NOTE: Use carrierwave instead of paperclip. carrierwave is more widely used nowadays.
+gem 'mini_magick' # NOTE: Use mini_magick instead of RMagick. RMagick is notorious for memory leak.
+gem 'fog-aws' # NOTE: Use fog-aws instead of fog to avoid unnecessary dependencies and reduce memory footprint.
+
 # MISC.
 gem 'settingslogic'
 
