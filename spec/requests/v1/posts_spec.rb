@@ -13,24 +13,24 @@ RSpec.describe 'Api::V1::PostsController', type: :request do
     context 'when the post exists' do
       let(:user) do
         {
-          'user' => {
-            'data' =>
+          user: {
+            data:
               {
-                'id' => @user.id.to_s,
-                'type' => 'users'
+                id: @user.id.to_s,
+                type: 'users'
               }
           }
         }
       end
       let(:expected_response) do
         {
-          'data' => {
-            'id' => @post.id.to_s,
-            'type' => 'posts',
-            'attributes' => {
-              'content' => @post.content
+          data: {
+            id: @post.id.to_s,
+            type: 'posts',
+            attributes: {
+              content: @post.content
             },
-            'relationships' => user
+            relationships: user
           }
         }
       end

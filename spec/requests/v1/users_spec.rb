@@ -9,15 +9,15 @@ RSpec.describe 'Api::V1::UsersController', type: :request do
     context 'without params' do
       let(:expected_response) do
         {
-          'data' => User.all.map do |user|
+          data: User.all.map do |user|
             {
-              'id' => user.id.to_s,
-              'type' => 'users',
-              'attributes' => {
-                'email' => user.email,
-                'screen_name' => user.screen_name
+              id: user.id.to_s,
+              type: 'users',
+              attributes: {
+                email: user.email,
+                screen_name: user.screen_name
               },
-              'relationships' => { 'posts' => { 'data' => [] } }
+              relationships: { posts: { data: [] } }
             }
           end
         }
@@ -35,12 +35,12 @@ RSpec.describe 'Api::V1::UsersController', type: :request do
     context 'when the user exists' do
       let(:posts) do
         {
-          'posts' => {
-            'data' =>
+          posts: {
+            data:
               @user.posts.map do |post|
                 {
-                  'id' => post.id.to_s,
-                  'type' => 'posts'
+                  id: post.id.to_s,
+                  type: 'posts'
                 }
               end
           }
@@ -48,14 +48,14 @@ RSpec.describe 'Api::V1::UsersController', type: :request do
       end
       let(:expected_response) do
         {
-          'data' => {
-            'id' => @user.id.to_s,
-            'type' => 'users',
-            'attributes' => {
-              'email' => @user.email,
-              'screen_name' => @user.screen_name
+          data: {
+            id: @user.id.to_s,
+            type: 'users',
+            attributes: {
+              email: @user.email,
+              screen_name: @user.screen_name
             },
-            'relationships' => posts
+            relationships: posts
           }
         }
       end
@@ -69,7 +69,7 @@ RSpec.describe 'Api::V1::UsersController', type: :request do
 
     context 'when the user does not exist' do
       before do
-        get '/api/v1/users/non_existing_user_email'
+        get '/api/v1/users/non_existing_user_id'
       end
 
       it_behaves_like 'http_status_code_404'
