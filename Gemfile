@@ -32,6 +32,12 @@ gem 'bootstrap'
 gem 'flatpickr_rails'
 gem 'simple_form'
 
+# API
+# NOTE: active_model_serializers is widely used, but fast_jsonapi seems faster.
+#   You might want to think of using Oj as a JSON parser with active_model_serializer if you need to handle huge traffic.
+#   Because the default rails JSON parser is notorious for being slow.
+gem 'active_model_serializers'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
