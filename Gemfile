@@ -38,6 +38,9 @@ gem 'simple_form'
 #   Because the default rails JSON parser is notorious for being slow.
 gem 'active_model_serializers'
 
+# MISC.
+gem 'settingslogic'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'

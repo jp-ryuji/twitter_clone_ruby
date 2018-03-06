@@ -341,6 +341,7 @@ GEM
     selenium-webdriver (3.9.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
+    settingslogic (2.0.9)
     shellany (0.0.1)
     simple_form (3.5.1)
       actionpack (> 4, < 5.2)
@@ -465,6 +466,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   scss_lint
   selenium-webdriver
+  settingslogic
   simple_form
   simplecov
   slim-rails
