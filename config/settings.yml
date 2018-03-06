@@ -1,4 +1,6 @@
 default: &default
+  asset_host:
+    carrierwave: <%= ENV['UPLOADED_ASSET_HOST'] || 'http://localhost:3000' %>
 
 development:
   <<: *default
@@ -8,3 +10,5 @@ test:
 
 production:
   <<: *default
+  asset_host:
+    carrierwave: <%= ENV['UPLOADED_ASSET_HOST'] || 'https://example.com/' %>
