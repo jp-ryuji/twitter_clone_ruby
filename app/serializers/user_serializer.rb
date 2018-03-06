@@ -18,6 +18,7 @@
 #  name                            :string(20)
 #  screen_name                     :string(15)       not null
 #  code                            :string
+#  image                           :string
 #
 # Indexes
 #
