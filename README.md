@@ -10,6 +10,7 @@ Haven't payed much attention to design/style for now.
 * Ruby 2.4.3
 * Ruby on Rails 5.1.5
 * Postgresql 9.3 or later
+* Imagemagick (for MiniMagick)
 
 ## Local development
 ### Required software
