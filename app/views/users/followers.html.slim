@@ -6,7 +6,7 @@ table.table.table-hover
       tr
         td= user.screen_name
         - if @following_user_ids.include?(user.id)
-          / TODO The button should be 'Following' normally, and it turns 'Unfollow' when it's hovered.
+          / TODO: The button should be 'Following' normally, and it turns 'Unfollow' when it's hovered.
           td= link_to 'Unfollow', user_unfollow_path(user_id: user.id), method: :delete, class: 'btn btn-warning'
         - else
           td= link_to 'Follow', user_follow_path(user_id: user.id), method: :post, class: 'btn btn-primary'

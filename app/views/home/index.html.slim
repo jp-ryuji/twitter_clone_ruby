@@ -1,12 +1,12 @@
 / TODO Should be done in ajax.
 = form_for @post do |f|
-  / TODO Add error message
+  / TODO: Add error message
   .form-group.row
     .col-sm-6
-      / FIXME Change the style (Make the area bigger when a user tries to input)
+      / FIXME: Change the style (Make the area bigger when a user tries to input)
       = f.text_field :content, maxlength: 140, required: true, class: 'form-control'
-      / TODO Add the rest of the number of chars a user can input.
-      / TODO Add photo upload.
+      / TODO: Add the rest of the number of chars a user can input.
+      / TODO: Add photo upload.
     .col-sm-2
       = f.submit 'Post', class: 'btn btn-primary'
 

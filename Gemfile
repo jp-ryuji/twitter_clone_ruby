@@ -21,10 +21,11 @@ gem 'bootstrap4-kaminari-views'
 gem 'webpacker'
 
 # Authentication
+# NOTE: devise is more widely used and you should use it instead of sorcery.
 gem 'sorcery'
 
 # View
-# FIXME JS libraries should be loaded with yarn.
+# FIXME: JS libraries should be loaded with yarn.
 gem 'jquery-rails'
 gem 'popper_js'
 gem 'slim-rails'

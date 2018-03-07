@@ -9,11 +9,11 @@ h4= 'Advanced Search'
     = f.label :since, 'Date Range', class: 'col-sm-3 col-form-label'
     .col-sm-9.input-group
       = f.text_field :since, class: 'flatpickr form-control'
-      / FIXME The color should be different from the date field.
+      / FIXME: The color should be different from the date field.
       = f.label :till, '~', class: 't1-label input-group-addon'
       = f.text_field :till, class: 'flatpickr form-control'
   .form-group.row
-    / FIXME offset-sm-3 doesn't work.
+    / FIXME: offset-sm-3 doesn't work.
     .col-sm-3
     .col-sm-9
       = f.submit 'Search', class: 'btn btn-primary'

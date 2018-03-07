@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   # TODO: follow and unfollow should be done by ajax.
-  # TODO fallback_location in follow and unfollow can be changed.
+  # TODO: fallback_location in follow and unfollow can be changed.
   def follow
     current_user.follow(@user)
     redirect_back(fallback_location: root_url, notice: "Following #{@user.email}")

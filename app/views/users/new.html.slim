@@ -1,5 +1,5 @@
 = form_for @user do |f|
-  / TODO Add error message
+  / TODO: Add error message
   .form-group.row
     = f.label :email, class: 'col-sm-2 col-form-label'
     .col-sm-10
@@ -13,7 +13,7 @@
     .col-sm-10
       = f.password_field :password, required: true, autocomplete: 'off', class: 'form-control'
   .form-group.row
-    / FIXME offset-sm-2 doesn't work.
+    / FIXME: offset-sm-2 doesn't work.
     .col-sm-2
     .col-sm-10
       = f.submit 'Sign up', class: 'btn btn-primary'
