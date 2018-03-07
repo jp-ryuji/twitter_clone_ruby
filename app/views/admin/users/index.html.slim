@@ -1,24 +1,23 @@
 h3. User List
 
 .row
-  .col-3
+  .col-4
     = form_for @admin_users_search_form, url: admin_users_path, method: :get do |f|
       .input-group.mb-3
         = f.text_field :search_text, class: 'form-control', placeholder: 'Partial search for email and screen_name'
         .input-group-append
           = f.submit 'Search', class: 'btn btn-outline-secondary', style: 'width: 100px;'
-  // FIXME: The style should be fixed.
-  .col-3
+  .col-4
     = form_tag import_csv_admin_users_path, multipart: true do
       .input-group
-        label.input-group-prepend
-          span.btn.btn-info
-            | Choose File
-            = file_field_tag :file, style: 'display:none'
-        = text_field_tag :filename, nil, readonly: true, class: 'form-control'
-        .input-group-append
+        .input-group-prepend
           = submit_tag 'CSV Import', class: 'btn btn-primary'
-  .col-1
+        .custom-file
+          = file_field_tag :file, style: 'display:none', id: 'csv-import-file'
+          label.custom-file-label for='csv-import-file'
+            span#csv-import-filename
+              | Choose file
+  .col-2
     = form_for @admin_users_search_form, url: export_csv_admin_users_path(format: :csv), method: :get do |f|
       = f.hidden_field :search_text
       = f.submit 'CSV Export', class: 'btn btn-primary btn-block'

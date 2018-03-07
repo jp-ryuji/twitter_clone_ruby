@@ -4,9 +4,8 @@ class DisplayCsvFileName {
   }
 
   static display() {
-    const $input = $(this)
-    const label = $input.val().replace(/\\/g, '/').replace(/.*\//, '')
-    $input.parent().parent().next(':text').val(label)
+    const label = $(this).val().replace(/\\/g, '/').replace(/.*\//, '')
+    $('#csv-import-filename').text(label)
   }
 }
 
