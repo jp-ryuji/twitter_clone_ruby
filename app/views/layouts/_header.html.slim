@@ -1,5 +1,5 @@
 .container
-  / FIXME This structure of the row and nav seems wrong to me (nav is not nested under nav. Without row, the style collpases.), but it works. Investigate it later.
+  / FIXME: This structure of the row and nav seems wrong to me (nav is not nested under nav. Without row, the style collpases.), but it works. Investigate it later.
   .row
   - if logged_in?
     nav.navbar.navbar-expand-sm
@@ -16,7 +16,7 @@
             .nav-link= link_to 'Advanced Search', search_advanced_path
           li.nav-item.dropdown
             a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#"
-              / FIXME Should be a user's photo.
+              / FIXME: Should be a user's photo.
               | dropdown
             .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
               .dropdown-item= link_to "#{current_user.screen_name} (#{current_user.email})", user_path(screen_name: current_user.screen_name)

@@ -7,6 +7,7 @@ module Admin
     # NOTE: This module is included for sanitize_sql_like that is for partial search (like search).
     include ActiveRecord::Sanitization::ClassMethods
 
+    # NOTE: Virtus allows you to define attributes on classes, modules or class instances with optional information.
     attribute :search_text, String
 
     PARAMS = [:search_text].freeze
