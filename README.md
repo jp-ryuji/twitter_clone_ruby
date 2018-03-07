@@ -85,3 +85,8 @@ SKIP=HOOK COMMAND
 e.g. SKIP=RuboCop git commit ...
 e.g. OVERCOMMIT_DISABLE=1 git commit ...
 ```
+
+### Annotate
+
+Until [this merge](https://github.com/ctran/annotate_models/pull/491) is released,
+RuboCop raises 'Extra line detected'. Fix manually.
