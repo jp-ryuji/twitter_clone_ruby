@@ -51,7 +51,6 @@ group :development, :test do
   gem 'pry-alias'
   gem 'pry-rescue'
   gem 'guard'
-  gem 'awesome_print'
   gem 'faker'
   gem 'bundler-audit', require: false
   gem 'brakeman', require: false
