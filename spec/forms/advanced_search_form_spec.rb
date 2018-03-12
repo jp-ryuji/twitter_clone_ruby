@@ -18,7 +18,7 @@ RSpec.describe AdvancedSearchForm do
         user = create(:user, screen_name: 'foo', posts_count: 2)
         create(:user, posts_count: 1)
 
-        form = AdvancedSearchForm.new(posts: { from: user.screen_name })
+        form = AdvancedSearchForm.new(posts_search_form: { from: user.screen_name })
         expect(form.search.size).to eq(2)
         expect(form.search.all? { |p| p.user == user }).to be_truthy
       end
@@ -29,7 +29,7 @@ RSpec.describe AdvancedSearchForm do
         Timecop.freeze(Time.current) do
           (1..3).each { |num| create(:post, created_at: num.days.ago) }
 
-          form = AdvancedSearchForm.new(posts: { since: 2.days.ago.strftime('%Y%m%d') })
+          form = AdvancedSearchForm.new(posts_search_form: { since: 2.days.ago.strftime('%Y%m%d') })
           expect(form.search.size).to eq(2)
           # This spec fails on circle ci, so added 10.seconds for margin.
           expect(form.search.all? { |p| p.created_at >= (2.days.ago - 10.seconds) }).to be_truthy
@@ -42,7 +42,7 @@ RSpec.describe AdvancedSearchForm do
         Timecop.freeze(Time.current) do
           (1..3).each { |num| create(:post, created_at: num.days.ago) }
 
-          form = AdvancedSearchForm.new(posts: { till: 2.days.ago.strftime('%Y%m%d') })
+          form = AdvancedSearchForm.new(posts_search_form: { till: 2.days.ago.strftime('%Y%m%d') })
           expect(form.search.size).to eq(2)
           expect(form.search.all? { |p| p.created_at <= 2.days.ago }).to be_truthy
         end
