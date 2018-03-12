@@ -22,6 +22,6 @@ class PostsController < ApplicationController
   end
 
   def permitted_params
-    params.permit(posts: AdvancedSearchForm::FORM_FIELDS)
+    params.permit(posts_search_form: AdvancedSearchForm::FORM_FIELDS)
   end
 end
