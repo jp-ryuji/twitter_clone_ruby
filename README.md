@@ -7,7 +7,7 @@ Haven't payed much attention to design/style for now.
 
 ## Required software
 
-* Ruby 2.4.3
+* Ruby 2.5.0
 * Ruby on Rails 5.1.5
 * Postgresql 9.3 or later
 
