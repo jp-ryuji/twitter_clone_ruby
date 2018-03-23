@@ -5,6 +5,10 @@ It also has the admin page (http://localhost:3000/admin), but it consists of sam
 
 Haven't payed much attention to design/style for now.
 
+## Caution
+
+* This repository has some `NOTE` here and there. But they are for education purposes. You shouldn't mimic that when you write code for production.
+
 ## Required software
 
 * Ruby 2.5.0
