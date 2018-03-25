@@ -90,7 +90,7 @@ GEM
       mail
     case_transform (0.2)
       activesupport
-    childprocess (0.8.0)
+    childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
     chromedriver-helper (1.2.0)
@@ -337,7 +337,7 @@ GEM
     scss_lint (0.57.0)
       rake (>= 0.9, < 13)
       sass (~> 3.5.5)
-    selenium-webdriver (3.9.0)
+    selenium-webdriver (3.11.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     settingslogic (2.0.9)
