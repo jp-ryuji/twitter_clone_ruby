@@ -36,5 +36,51 @@ class AdvancedSearchForm
     query = query.where('posts.created_at < ?', Time.zone.parse(till) + 1.day) if till.present?
     query
   end
-  # rubocop:enable  Metrics/AbcSize
+  # rubocop:enable Metrics/AbcSize
+
+  # NOTE: The following is examples of the search method with yield_self.
+  #
+  # Version (1)
+  #
+  # def search
+  #   return Post.none if @posts_search_form.empty?
+  #
+  #   Post
+  #     .includes(:user)
+  #     .order('posts.created_at desc')
+  #     .yield_self(&method(:filter_by_screen_name))
+  #     .yield_self(&method(:filter_by_since))
+  #     .yield_self(&method(:filter_by_till))
+  # end
+  #
+  # private
+  #
+  # def filter_by_screen_name(posts)
+  #   return posts.joins(:user).where(users: { screen_name: from }) if from.present?
+  #   posts
+  # end
+  #
+  # def filter_by_since(posts)
+  #   return posts.where('posts.created_at >= ?', Time.zone.parse(since)) if since.present?
+  #   posts
+  # end
+  #
+  # def filter_by_till(posts)
+  #   return posts.where('posts.created_at < ?', Time.zone.parse(till) + 1.day) if till.present?
+  #   posts
+  # end
+
+  # Version (2)
+  #
+  # def search
+  #   return Post.none if @posts_search_form.empty?
+  #
+  #   Post.includes(:user).order('posts.created_at desc').yield_self { |posts|
+  #     from.present? ? posts.joins(:user).where(users: { screen_name: from }) : posts
+  #   }.yield_self { |posts|
+  #     since.present? ? posts.where('posts.created_at >= ?', Time.zone.parse(since)) : posts
+  #   }.yield_self { |posts|
+  #     till.present? ? posts.where('posts.created_at < ?', Time.zone.parse(till) + 1.day) : posts
+  #   }
+  # end
 end
