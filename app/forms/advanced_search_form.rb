@@ -20,6 +20,14 @@ class AdvancedSearchForm
     attribute f, String
   end
 
+  # NOTE: You can define attributes as follows, too.
+  #   This might look simpler, but bear in mind that you have to define FORM_FIELDS, too.
+  #   Because the attributes are refered in app/controllers/posts_controller.rb
+  # attribute :from, String
+  # attribute :since, String
+  # attribute :till, String
+  # FORM_FIELDS = %i[from since till]
+
   def initialize(params)
     @posts_search_form = params[:posts_search_form] || {}
     FORM_FIELDS.each { |f| send("#{f}=", @posts_search_form[f]) }
@@ -38,7 +46,7 @@ class AdvancedSearchForm
   end
   # rubocop:enable Metrics/AbcSize
 
-  # NOTE: The following is examples of the search method with yield_self.
+  # NOTE: The following are examples of the search method with yield_self.
   #
   # Version (1)
   #
