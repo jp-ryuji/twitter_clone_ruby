@@ -3,16 +3,16 @@
 This repository has some features that twitter has as it's named. :-)
 It also has the admin page (http://localhost:3000/admin), but it consists of sample code that intends to show how to write basic features such as search, csv import/export and so on. So the page is nothing to do with twitter.
 
-Haven't payed much attention to design/style for now.
+Haven't payed much attention to the design/style for now.
 
 ## Caution
 
-* This repository has some `NOTE` here and there. But they are for education purposes. You shouldn't mimic that when you write code for production.
+* This repository has some `NOTE` here and there. But they are for education purposes. You shouldn't mimic them when you write code for production.
 
 ## Required software
 
 * Ruby 2.5.0
-* Ruby on Rails 5.1.5
+* Ruby on Rails 5.1.6
 * Postgresql 9.3 or later
 
 ## Local development

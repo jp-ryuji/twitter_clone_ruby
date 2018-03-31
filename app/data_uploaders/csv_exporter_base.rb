@@ -11,7 +11,7 @@ class CsvExporterBase
     # NOTE: The encoding is for the Japanese environment.
     encoding = Encoding::Windows_31J
     rows = CSV.generate(row_sep: "\r\n", headers: self.class::COLUMNS, write_headers: true, force_quotes: true) do |csv|
-      # NOTE: find_each is used here because @records could be thousands of records. If there's no such concern, use find instead.
+      # NOTE: find_each is used here because @records could be thousands of records. If there's no such concern, use each instead.
       @records.find_each do |record|
         csv << parse_record(record).fetch_values(*self.class::COLUMNS)
       end
