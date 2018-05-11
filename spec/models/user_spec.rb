@@ -44,6 +44,7 @@ RSpec.describe User, type: :model do
     expect(user.following_users.size).to eq(2)
   end
 
+  # NOTE: Normally I don't write specs for validation because they are not worth to do so.
   describe 'validations' do
     describe 'email' do
       it 'is present' do
