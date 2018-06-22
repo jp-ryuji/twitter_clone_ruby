@@ -22,6 +22,7 @@ RSpec.describe 'Api::V1::UsersController', type: :request do
           end
         }
       end
+
       before do
         create_list(:user, 2)
         get '/api/v1/users'
@@ -59,6 +60,7 @@ RSpec.describe 'Api::V1::UsersController', type: :request do
           }
         }
       end
+
       before do
         @user = create(:user, posts_count: 2)
         get "/api/v1/users/#{@user.id}"

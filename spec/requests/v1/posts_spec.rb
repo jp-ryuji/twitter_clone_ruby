@@ -34,6 +34,7 @@ RSpec.describe 'Api::V1::PostsController', type: :request do
           }
         }
       end
+
       before do
         @user = create(:user, posts_count: 1)
         @post = @user.posts.first
