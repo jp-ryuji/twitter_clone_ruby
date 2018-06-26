@@ -2,7 +2,7 @@
   "name": "twitter_clone_ruby",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.2.2"
+    "@rails/webpacker": "3.5"
   },
   "devDependencies": {
     "eslint": "^4.18.1",
@@ -10,6 +10,6 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "webpack-dev-server": "^3.0.0"
+    "webpack-dev-server": "2.11.2"
   }
 }
