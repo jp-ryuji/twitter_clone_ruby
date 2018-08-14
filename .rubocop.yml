@@ -32,6 +32,8 @@ Naming/FileName:
   Exclude:
     - Gemfile
     - Guardfile
+Naming/UncommunicativeMethodParamName:
+  AllowedNames: [ex]
 Rails:
   Enabled: true
 Rails/InverseOf:
