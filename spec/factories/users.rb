@@ -36,7 +36,7 @@ FactoryBot.define do
     screen_name { Faker::Twitter.screen_name[0..14] } # The method can return a word with more than 15 chars.
 
     transient do
-      posts_count 0
+      posts_count { 0 }
     end
 
     after(:create) do |user, evaluator|
