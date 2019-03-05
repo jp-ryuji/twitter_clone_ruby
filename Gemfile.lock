@@ -251,9 +251,9 @@ GEM
       yard (~> 0.9.11)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    pry-rescue (1.4.5)
+    pry-rescue (1.5.0)
       interception (>= 0.5)
-      pry
+      pry (>= 0.12.0)
     pry-stack_explorer (0.4.9.3)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
