@@ -481,7 +481,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   puma (~> 3.12)
-  rails (~> 5.2.2)
+  rails (~> 5.2.2.1)
   rails-erd
   rspec-rails
   rspec_junit_formatter
