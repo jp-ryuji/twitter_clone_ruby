@@ -66,6 +66,7 @@ group :development do
   gem 'bullet'
   gem 'guard-rspec', require: false
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
   gem 'guard-rubocop'
   gem 'rubocop-rspec'
   gem 'overcommit'
