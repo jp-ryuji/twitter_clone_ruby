@@ -1,10 +1,9 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: followings
 #
-#  id                :integer          not null, primary key
+#  id                :bigint(8)        not null, primary key
 #  following_user_id :integer          not null
 #  follower_id       :integer          not null
 #
