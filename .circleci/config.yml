@@ -74,7 +74,7 @@ jobs:
 
       - run:
           name: Database setup
-          command: bin/rails db:schema:load --trace
+          command: bundle exec rails ridgepole:apply
 
       # Run brakeman
       - run:
