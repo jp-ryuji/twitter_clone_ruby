@@ -1,0 +1,42 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "followings", force: :cascade do |t|
+  t.integer "following_user_id", null: false
+  t.integer "follower_id", null: false
+  t.index ["follower_id", "following_user_id"], name: "index_followings_on_follower_id_and_following_user_id", unique: true
+  t.index ["following_user_id"], name: "index_followings_on_following_user_id"
+end
+
+create_table "posts", force: :cascade do |t|
+  t.bigint "user_id"
+  t.text "content", null: false
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.string "id_token", null: false
+  t.index ["id_token"], name: "index_posts_on_id_token", unique: true
+  t.index ["user_id"], name: "index_posts_on_user_id"
+end
+
+create_table "users", force: :cascade do |t|
+  t.string "email", null: false
+  t.string "crypted_password"
+  t.string "salt"
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.string "remember_me_token"
+  t.datetime "remember_me_token_expires_at"
+  t.string "reset_password_token"
+  t.datetime "reset_password_token_expires_at"
+  t.datetime "reset_password_email_sent_at"
+  t.string "name", limit: 20
+  t.string "screen_name", limit: 15, null: false
+  t.string "code"
+  t.index ["code"], name: "index_users_on_code", unique: true
+  t.index ["email"], name: "index_users_on_email", unique: true
+  t.index ["name"], name: "index_users_on_name"
+  t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
+  t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
+  t.index ["screen_name"], name: "index_users_on_screen_name", unique: true
+end
+
+add_foreign_key "posts", "users"
