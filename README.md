@@ -8,6 +8,7 @@ Haven't payed much attention to the design/style for now.
 ## Caution
 
 * This repository has some `NOTE` here and there. But they are for education purposes. You shouldn't mimic them when you write code for production.
+* [`ridgepole`](https://github.com/winebarrel/ridgepole) is used instead of the Rails default db migration. `ridgepole` is especially useful where many developers are working on the same repository and many services are referring to the same database.
 
 ## Required software
 
@@ -33,7 +34,14 @@ The following software should be installed (by brew on Mac)
 
 2. Database setup
     ```
-    $ bin/rails db:setup
+    $ bin/rails db:create
+    $ bundle exec rails ridgepole:apply
+    ```
+
+    ```
+    # You should run the commands above intead of bin/rails db:setup as ridgepole is used.
+    # You should pass RAILS_ENV, like RAILS_ENV=production, for an environment besides development as follows.
+    $ bundle exec rails ridgepole:apply RAILS_ENV=production
     ```
 
 3. Setup environment variables if needed (Maybe not. Skip the step if the yml file doesn't exist.)
