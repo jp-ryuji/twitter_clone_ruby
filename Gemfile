@@ -19,6 +19,7 @@ gem 'virtus'
 gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'webpacker'
+gem 'ridgepole'
 
 # Authentication
 # NOTE: devise is more widely used and you should use it instead of sorcery.
