@@ -1,6 +1,8 @@
 class SorceryCore < ActiveRecord::Migration[5.1]
   def change
-    create_table :users do |t|
+    enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
+
+    create_table :users, id: :uuid do |t|
       t.string :email,            :null => false
       t.string :crypted_password
       t.string :salt
