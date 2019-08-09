@@ -13,17 +13,18 @@
 ActiveRecord::Schema.define(version: 2018_02_28_090517) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "followings", force: :cascade do |t|
-    t.integer "following_user_id", null: false
-    t.integer "follower_id", null: false
+  create_table "followings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "following_user_id", null: false
+    t.uuid "follower_id", null: false
     t.index ["follower_id", "following_user_id"], name: "index_followings_on_follower_id_and_following_user_id", unique: true
     t.index ["following_user_id"], name: "index_followings_on_following_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "posts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_02_28_090517) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
