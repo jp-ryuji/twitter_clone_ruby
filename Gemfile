@@ -42,6 +42,7 @@ gem 'active_model_serializers'
 
 # MISC.
 gem 'settingslogic'
+gem 'lograge'
 
 group :development, :test do
   gem 'rspec-rails'
