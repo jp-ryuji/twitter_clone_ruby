@@ -102,3 +102,10 @@ e.g. OVERCOMMIT_DISABLE=1 git commit ...
 
 Until [this merge](https://github.com/ctran/annotate_models/pull/491) is released,
 RuboCop raises 'Extra line detected'. Fix manually.
+
+## Logging
+[lograge](https://github.com/roidrage/lograge) is used. So the following command should be used instead of `Rails.logger`.
+
+```ruby
+LogrageLogger.call({ message: 'error message comes here' }, error: e)
+```
