@@ -15,7 +15,6 @@ class LogrageLogger
     def file
       Rails.root.join('log', "lograge_#{Rails.env}.log")
     end
-
   end
 
   def log(attr, **options)
@@ -32,7 +31,7 @@ class LogrageLogger
     option = { level: 'fatal' }
     e = options[:error]
 
-    if e && e.is_a?(StandardError)
+    if e&.is_a?(StandardError)
       option[:exception] = [e.class.name, e.message]
       option[:exception_backtrace] = e.backtrace[0..6]
     end
@@ -52,10 +51,10 @@ class LogrageLogger
       {}.tap { |h| append_info_to_payload(h) }
     end
     raw_payload = current_controller.instance_eval do
-      exceptions = %w(controller action format id authenticity_token utf8)
+      exceptions = %w[controller action format id authenticity_token utf8]
       {
         controller: self.class.name,
-        action:     self.action_name,
+        action:     action_name,
         params:     request.filtered_parameters.except(*exceptions),
         format:     request.format.try(:ref),
         method:     request.request_method,
@@ -64,7 +63,7 @@ class LogrageLogger
       }
     end
     payload.merge(raw_payload)
-  rescue
+  rescue StandardError
     {}
   end
 end
