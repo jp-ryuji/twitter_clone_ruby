@@ -98,6 +98,10 @@ e.g. SKIP=RuboCop git commit ...
 e.g. OVERCOMMIT_DISABLE=1 git commit ...
 ```
 
+### Rubocop
+
+- [Disabling Cops within Source Code](https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md#disabling-cops-within-source-code)
+
 ### Annotate
 
 Until [this merge](https://github.com/ctran/annotate_models/pull/491) is released,
