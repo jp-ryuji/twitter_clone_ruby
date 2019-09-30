@@ -3,9 +3,9 @@
 #
 # Table name: followings
 #
-#  id                :uuid             not null, primary key
-#  following_user_id :uuid             not null
-#  follower_id       :uuid             not null
+#  id                :bigint(8)        not null, primary key
+#  following_user_id :integer          not null
+#  follower_id       :integer          not null
 #
 # Indexes
 #
