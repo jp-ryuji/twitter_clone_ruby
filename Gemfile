@@ -86,8 +86,8 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'email_spec'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  # gem 'selenium-webdriver'
+  # gem 'chromedriver-helper'
   gem 'vcr'
   gem 'webmock'
   gem 'simplecov', require: false
