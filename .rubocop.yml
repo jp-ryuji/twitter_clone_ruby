@@ -18,7 +18,7 @@ AllCops:
 Bundler/OrderedGems:
   Exclude:
     - Gemfile
-Metrics/LineLength:
+Layout/LineLength:
   Max: 150
 Metrics/MethodLength:
   Max: 15
