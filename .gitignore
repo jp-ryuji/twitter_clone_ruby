@@ -140,7 +140,8 @@ tramp
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -217,3 +218,5 @@ Session.vim
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+/package-lock.json
