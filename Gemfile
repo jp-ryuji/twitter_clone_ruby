@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.6.6'
+ruby '2.7.8'
 
 gem 'rails', '~> 5.2.3'
 gem 'pg', '~> 1.1'
@@ -71,6 +71,7 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'guard-rubocop'
   gem 'rubocop-rspec'
+  gem 'rubocop-rails'
   gem 'overcommit'
   gem 'letter_opener'
   gem 'letter_opener_web'
