@@ -5,6 +5,7 @@
     "@rails/webpacker": "5.4.4"
   },
   "devDependencies": {
+    "@webpack-cli/serve": "^2.0.5",
     "eslint": "^4.18.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",
