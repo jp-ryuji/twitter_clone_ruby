@@ -252,7 +252,7 @@ GEM
       railties (>= 6.1)
       rexml
     lint_roller (1.1.0)
-    listen (3.8.0)
+    listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
@@ -514,12 +514,12 @@ GEM
       bcrypt (~> 3.1)
       oauth (>= 0.6)
       oauth2 (~> 2.0)
-    spring (2.1.1)
+    spring (4.4.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    spring-watcher-listen (2.0.1)
+    spring-watcher-listen (2.1.0)
       listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
+      spring (>= 4)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -598,7 +598,7 @@ DEPENDENCIES
   kaminari
   letter_opener
   letter_opener_web
-  listen (>= 3.0.5, < 3.9)
+  listen (~> 3.9)
   lograge
   overcommit
   pg (~> 1.6)
@@ -627,9 +627,9 @@ DEPENDENCIES
   slim-rails
   slim_lint
   sorcery (~> 0.17.0)
-  spring
+  spring (~> 4.4)
   spring-commands-rspec
-  spring-watcher-listen (~> 2.0.0)
+  spring-watcher-listen (~> 2.1)
   terser
   timecop
   vcr
