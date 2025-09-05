@@ -10,8 +10,8 @@ class UsersCsvImporter < CsvImporterBase
         importer.create_or_update_record
       end
     end
-  rescue ActiveRecord::RecordInvalid => ex
-    errors.add(:base, ex.message)
+  rescue ActiveRecord::RecordInvalid => e
+    errors.add(:base, e.message)
   end
 
   private

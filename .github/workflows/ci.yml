@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: twitter_clone_ruby_test
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    strategy:
+      matrix:
+        # Run tests in parallel
+        rspec-part: [1, 2, 3]
+
+    env:
+      RAILS_ENV: test
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      DATABASE_URL: postgresql://postgres:postgres@localhost/twitter_clone_ruby_test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.9
+          bundler-cache: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+          cache: 'yarn'
+
+      - name: Install Yarn dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Wait for PostgreSQL
+        run: |
+          until pg_isready -h localhost -p 5432 -U postgres; do
+            echo "Waiting for PostgreSQL..."
+            sleep 1
+          done
+
+      - name: Setup database
+        run: |
+          bundle exec rails db:create
+          bundle exec rails ridgepole:apply
+
+      - name: Bundle Audit Check
+        run: bundle exec bundle-audit check --update
+
+      - name: Brakeman Security Scan
+        run: bundle exec brakeman -5 -A -w 1 -z
+
+      - name: Run tests
+        run: |
+          # Split tests into 3 groups for parallel execution
+          SPEC_FILES=$(find spec -name "*_spec.rb" | sort)
+          TOTAL_FILES=$(echo "$SPEC_FILES" | wc -l)
+          FILES_PER_GROUP=$(( (TOTAL_FILES + 2) / 3 ))
+
+          START_INDEX=$(( ({{ matrix.rspec-part }} - 1) * FILES_PER_GROUP + 1 ))
+          END_INDEX=$(( {{ matrix.rspec-part }} * FILES_PER_GROUP ))
+
+          # Handle the case where END_INDEX exceeds total files
+          if [ $END_INDEX -gt $TOTAL_FILES ]; then
+            END_INDEX=$TOTAL_FILES
+          fi
+
+          # Extract the files for this group
+          SPEC_GROUP=$(echo "$SPEC_FILES" | sed -n "${START_INDEX},${END_INDEX}p")
+
+          echo "Running tests for group {{ matrix.rspec-part }}:"
+          echo "$SPEC_GROUP"
+
+          # Run the tests
+          if [ -n "$SPEC_GROUP" ]; then
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out test_results/rspec-{{ matrix.rspec-part }}.xml \
+                              --format progress \
+                              $SPEC_GROUP
+          fi
+
+      - name: Publish test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.rspec-part }}
+          path: test_results/
+          if-no-files-found: ignore

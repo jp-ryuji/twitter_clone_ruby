@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -39,7 +40,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
-  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d-]+(\.[a-z\d-]+)*\.[a-z]+\z/i
   SCREEN_NAME_REGEXP = /\A[0-9a-zA-Z_]{1,15}\z/i
 
   before_validation do

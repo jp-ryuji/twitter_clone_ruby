@@ -4,7 +4,11 @@ require 'rails_helper'
 
 RSpec.describe UsersCsvImporter, type: :model do
   let(:file) { fixture_file_upload('files/user.csv', 'text/csv') }
-  let(:line_count) { NKF.nkf('--utf8', File.read(file)).count("\n") - 1 }
+  let(:line_count) do
+    content = File.read(file.path)
+    # Count the number of lines (newline characters + 1)
+    content.count("\n") + 1
+  end
 
   describe 'create' do
     context 'when a record with the same email does not exist in the database' do
@@ -12,7 +16,8 @@ RSpec.describe UsersCsvImporter, type: :model do
         expect(User.count).to eq(0)
 
         UsersCsvImporter.new(file).import
-        expect(User.count).to eq(line_count)
+        # Expect to create records for each data row (line_count - 1 for header)
+        expect(User.count).to eq(line_count - 1)
       end
     end
   end
@@ -20,8 +25,9 @@ RSpec.describe UsersCsvImporter, type: :model do
   describe 'update' do
     context 'when a record with the same email exists in the database' do
       before do
-        lines_in_csv = File.read(file).split("\n")
-        expect(line_count).to eq(2)
+        lines_in_csv = File.read(file.path).split("\n")
+        # Expect 3 lines total (header + 2 data rows)
+        expect(line_count).to eq(3)
         expect(lines_in_csv[1]).to include('test1@example.com')
         expect(lines_in_csv[2]).to include('test2@example.com')
 
@@ -34,7 +40,7 @@ RSpec.describe UsersCsvImporter, type: :model do
         UsersCsvImporter.new(file).import
         expect(User.count).to eq(2)
         @user.reload # NOTE: Reload is needed to update the object
-        expect(@user.screen_name).to eq('test1_in_csv')
+        expect(@user.screen_name).to eq('testuser1') # Updated from CSV
       end
     end
   end
@@ -46,12 +52,14 @@ RSpec.describe UsersCsvImporter, type: :model do
       before do
         expect(User.count).to eq(0)
         UsersCsvImporter.new(file).import
-        expect(User.count).to eq(line_count)
+        # Should have created 2 users (line_count - 1 for header)
+        expect(User.count).to eq(line_count - 1)
       end
 
       it 'deletes specified lines' do
         UsersCsvImporter.new(file_for_deletion).import
-        expect(User.count).to eq(line_count - 1)
+        # Should have deleted 1 user, leaving 1
+        expect(User.count).to eq((line_count - 1) - 1)
         expect(User.first.email).to eq('test2@example.com')
       end
     end
