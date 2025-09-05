@@ -7,30 +7,32 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.8'
+ruby '3.2.9'
 
-gem 'rails', '~> 5.2.3'
-gem 'pg', '~> 1.1'
-gem 'puma', '~> 4.3'
+gem 'rails', '~> 8.0.2'
+gem 'pg', '~> 1.6'
+gem 'puma', '~> 7.0'
 gem 'sass-rails', '~> 6.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'terser'
 gem 'dotenv-rails'
-gem 'virtus'
+gem 'dry-types'
+gem 'dry-struct'
 gem 'kaminari'
-gem 'bootstrap4-kaminari-views'
+# bootstrap4-kaminari-views is outdated, we'll customize pagination views manually
 gem 'webpacker'
+
 gem 'ridgepole'
 
 # Authentication
 # NOTE: devise is more widely used and you should use it instead of sorcery.
-gem 'sorcery'
+gem 'sorcery', '~> 0.17.0'
 
 # View
 # FIXME: JS libraries should be loaded with yarn.
 gem 'jquery-rails'
 gem 'popper_js'
 gem 'slim-rails'
-gem 'bootstrap'
+gem 'bootstrap', '~> 5.0'
 gem 'flatpickr_rails'
 gem 'simple_form'
 
@@ -38,7 +40,7 @@ gem 'simple_form'
 # NOTE: active_model_serializers is widely used, but fast_jsonapi seems faster.
 #   You might want to think of using Oj as a JSON parser with active_model_serializer if you need to handle huge traffic.
 #   Because the default rails JSON parser is notorious for being slow.
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.10.15'
 
 # MISC.
 gem 'settingslogic'
@@ -61,7 +63,7 @@ end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.3'
+  gem 'listen', '>= 3.0.5', '< 3.9'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'

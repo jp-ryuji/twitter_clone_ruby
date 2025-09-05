@@ -15,26 +15,47 @@ AllCops:
     - vendor/**/*
     - lib/tasks/dev.rake
     - lib/tasks/auto_annotate_models.rake
+  NewCops: enable
+  SuggestExtensions: false
+
 Bundler/OrderedGems:
   Exclude:
     - Gemfile
+
 Layout/LineLength:
   Max: 150
+
 Metrics/MethodLength:
   Max: 15
+
 Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
     - spec/factories/*
     - spec/support/*
     - Guardfile
+
 Naming/FileName:
   Exclude:
     - Gemfile
     - Guardfile
+
 Naming/MethodParameterName:
-  AllowedNames: [ex]
+  AllowedNames: [ex, e]
+
 Style/Documentation:
   Enabled: false
+
 Style/FormatStringToken:
   Enabled: false
+
+# Allow numbered method names for error handlers
+Naming/VariableNumber:
+  AllowedIdentifiers:
+    - error_404
+    - error_500
+
+# Allow numbered method names for error handlers
+Naming/MethodName:
+  AllowedPatterns:
+    - error_\d+

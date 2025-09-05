@@ -3,6 +3,7 @@
 class UsersCsvExporter < CsvExporterBase
   # NOTE: Override the method for the includes.
   def initialize(records)
+    super
     @records = records.includes(:posts)
   end
 
@@ -12,12 +13,12 @@ class UsersCsvExporter < CsvExporterBase
     posts
   ].freeze
 
-  private
-
   # NOTE: A constant can't be private although it's defined here since it's only used by a private method.
   COLUMNS_FROM_METHOD = %w[
     posts
   ].freeze
+
+  private
 
   def parse_record(user)
     COLUMNS.each_with_object({}) do |column, h|
@@ -36,6 +37,7 @@ class UsersCsvExporter < CsvExporterBase
     # NOTE: As for the difference between present?, empty?, any?, exists?, see the following page.
     #   https://semaphoreci.com/blog/2017/03/14/faster-rails-how-to-check-if-a-record-exists.html
     return '' if posts.empty?
+
     posts.pluck(:content).join('|')
   end
 end

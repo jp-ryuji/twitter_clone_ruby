@@ -1,0 +1,23 @@
+services:
+  postgres:
+    container_name: twitter-clone-postgres-dev
+    image: postgres:17
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=twitter_user
+      - POSTGRES_PASSWORD=twitter_password
+      - POSTGRES_DB=twitter_clone_development
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U twitter_user -d twitter_clone_development']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  postgres_data_dev:

@@ -2,13 +2,13 @@
 
 module Admin
   class UsersSearchForm
-    include Virtus.model
     include ActiveModel::Model
+    include ActiveModel::Attributes
     # NOTE: This module is included for sanitize_sql_like that is for partial search (like search).
     include ActiveRecord::Sanitization::ClassMethods
 
-    # NOTE: Virtus allows you to define attributes on classes, modules or class instances with optional information.
-    attribute :search_text, String
+    # Define attributes using ActiveModel::Attributes
+    attribute :search_text, :string
 
     PARAMS = [:search_text].freeze
 

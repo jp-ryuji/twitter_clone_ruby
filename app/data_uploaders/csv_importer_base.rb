@@ -11,18 +11,20 @@ class CsvImporterBase
     @errors = ActiveModel::Errors.new(self)
   end
 
+  # NOTE: The number of lines to detect encoding
+  NUMBER_OF_LINES_TO_DETECT_ENCODING = 100
+
   # TODO: The header should be checked on production normally.
   def import_base
     CSV.foreach(@file.path, encoding: detect_encoding, headers: true) do |row|
       next if row.blank?
+
       yield ActiveSupport::HashWithIndifferentAccess.new(row)
     end
   end
 
   private
 
-  NUMBER_OF_LINES_TO_DETECT_ENCODING = 100
-  # rubocop:disable Lint/HandleExceptions
   def detect_encoding
     File.open(@file.path) do |file|
       NUMBER_OF_LINES_TO_DETECT_ENCODING.times.each do
@@ -42,5 +44,4 @@ class CsvImporterBase
 
     'BOM|UTF-8'
   end
-  # rubocop:enable Lint/HandleExceptions
 end

@@ -57,6 +57,7 @@ module Admin
 
     def search_params
       return {} if params[:admin_users_search_form].blank?
+
       params.require(:admin_users_search_form).permit(Admin::UsersSearchForm::PARAMS)
     end
   end

@@ -15,6 +15,9 @@ module TwitterCloneRuby
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Opt in to the new behavior for to_time in Rails 8.1
+    config.active_support.to_time_preserves_timezone = :zone
+
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,

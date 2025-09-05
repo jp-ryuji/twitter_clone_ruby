@@ -2,13 +2,18 @@
 
 # NOTE: This code is a subspecies of Extract Form Objects at https://codeclimate.com/blog/7-ways-to-decompose-fat-activerecord-models/
 class AdvancedSearchForm
-  include Virtus.model
   include ActiveModel::Model
+  include ActiveModel::Attributes
 
   def self.model_name
     # FIXME: Maybe the class name at line 3 should be PostsSearchForm instead of AdvancedSearchForm.
     ActiveModel::Name.new(self, nil, 'PostsSearchForm')
   end
+
+  # Define attributes using ActiveModel::Attributes
+  attribute :from, :string
+  attribute :since, :string
+  attribute :till, :string
 
   FORM_FIELDS = %i[
     from
@@ -16,21 +21,10 @@ class AdvancedSearchForm
     till
   ].freeze
 
-  FORM_FIELDS.each do |f|
-    attribute f, String
-  end
-
-  # NOTE: You can define attributes as follows, too.
-  #   This might look simpler, but bear in mind that you have to define FORM_FIELDS, too.
-  #   Because the attributes are refered in app/controllers/posts_controller.rb
-  # attribute :from, String
-  # attribute :since, String
-  # attribute :till, String
-  # FORM_FIELDS = %i[from since till]
-
-  def initialize(params)
+  def initialize(params = {})
+    super()
     @posts_search_form = params[:posts_search_form] || {}
-    FORM_FIELDS.each { |f| send("#{f}=", @posts_search_form[f]) }
+    FORM_FIELDS.each { |f| public_send("#{f}=", @posts_search_form[f]) }
   end
 
   # TODO: Full text search should be considered for keyword search.
