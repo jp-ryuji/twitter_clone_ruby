@@ -88,6 +88,7 @@ jobs:
           psql -U postgres -c "CREATE ROLE twitter_user LOGIN PASSWORD 'twitter_password';"
           psql -U postgres -c "ALTER ROLE twitter_user CREATEDB;"
           bundle exec rails db:create
+          psql -U postgres -c "ALTER DATABASE twitter_clone_ruby_test OWNER TO twitter_user;"
           bundle exec rails ridgepole:apply
 
       - name: Bundle Audit Check
