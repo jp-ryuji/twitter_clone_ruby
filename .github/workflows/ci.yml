@@ -49,7 +49,7 @@ jobs:
       PGHOST: localhost
       PGUSER: postgres
       PGPASSWORD: postgres
-      DATABASE_URL: postgresql://postgres:postgres@localhost/twitter_clone_ruby_test
+      DATABASE_URL: postgresql://twitter_user:twitter_password@localhost/twitter_clone_ruby_test
 
     steps:
       - name: Checkout code
@@ -84,6 +84,9 @@ jobs:
 
       - name: Setup database
         run: |
+          # Create the twitter_user role that's configured in database.yml
+          psql -U postgres -c "CREATE ROLE twitter_user LOGIN PASSWORD 'twitter_password';"
+          psql -U postgres -c "ALTER ROLE twitter_user CREATEDB;"
           bundle exec rails db:create
           bundle exec rails ridgepole:apply
 
@@ -100,8 +103,8 @@ jobs:
           TOTAL_FILES=$(echo "$SPEC_FILES" | wc -l)
           FILES_PER_GROUP=$(( (TOTAL_FILES + 2) / 3 ))
 
-          START_INDEX=$(( ({{ matrix.rspec-part }} - 1) * FILES_PER_GROUP + 1 ))
-          END_INDEX=$(( {{ matrix.rspec-part }} * FILES_PER_GROUP ))
+          START_INDEX=$(( (RSPEC_PART - 1) * FILES_PER_GROUP + 1 ))
+          END_INDEX=$(( RSPEC_PART * FILES_PER_GROUP ))
 
           # Handle the case where END_INDEX exceeds total files
           if [ $END_INDEX -gt $TOTAL_FILES ]; then
@@ -111,17 +114,19 @@ jobs:
           # Extract the files for this group
           SPEC_GROUP=$(echo "$SPEC_FILES" | sed -n "${START_INDEX},${END_INDEX}p")
 
-          echo "Running tests for group {{ matrix.rspec-part }}:"
+          echo "Running tests for group $RSPEC_PART:"
           echo "$SPEC_GROUP"
 
           # Run the tests
           if [ -n "$SPEC_GROUP" ]; then
             bundle exec rspec --profile 10 \
                               --format RspecJunitFormatter \
-                              --out test_results/rspec-{{ matrix.rspec-part }}.xml \
+                              --out test_results/rspec-$RSPEC_PART.xml \
                               --format progress \
                               $SPEC_GROUP
           fi
+        env:
+          RSPEC_PART: ${{ matrix.rspec-part }}
 
       - name: Publish test results
         uses: actions/upload-artifact@v4
