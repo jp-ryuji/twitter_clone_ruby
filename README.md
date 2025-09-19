@@ -97,22 +97,25 @@ $ bin/rails 'dev:generate_data[100,10,20]'
 -> A test user is created with the following email and password (test@example.com / password).
 ```
 
-### Overcommit
+### Lefthook
 
-Setup overcommit for git hooks
+Lefthook is used for git hooks to ensure code quality. Since it's included in the Gemfile, it will be available when you run `bundle install`.
+
+In most cases, the git hooks are automatically installed. However, if you need to reinstall or update them (such as after cloning the repository or if the hooks become corrupted), you can run:
 
 ```bash
-bundle exec overcommit --install
-bundle exec overcommit --sign
+bundle exec lefthook install
 ```
+
+Lefthook will automatically run checks before each commit to ensure code quality.
 
 In case you have to ignore hooks
 
 ```bash
 SKIP=HOOK COMMAND
 
-e.g. SKIP=RuboCop git commit ...
-e.g. OVERCOMMIT_DISABLE=1 git commit ...
+e.g. SKIP=rubocop git commit ...
+e.g. LEFTHOOK=0 git commit ...
 ```
 
 ### Rubocop
