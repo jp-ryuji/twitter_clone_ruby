@@ -74,7 +74,7 @@ group :development do
   gem 'guard-rubocop'
   gem 'rubocop-rspec'
   gem 'rubocop-rails'
-  gem 'overcommit'
+  gem 'lefthook'
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'rails-erd'
