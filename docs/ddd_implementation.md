@@ -70,6 +70,5 @@ This approach provides several benefits:
 app/
 ├── application/           # Application services
 ├── models/                # ActiveRecord models (domain entities)
-├── value_objects/         # Value objects
-└── services/              # Legacy services (to be refactored)
+└── value_objects/         # Value objects
 ```
