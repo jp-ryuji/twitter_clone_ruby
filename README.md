@@ -5,6 +5,10 @@ It also has the admin page (<http://localhost:3000/admin>), but it consists of s
 
 Haven't payed much attention to the design/style for now.
 
+## Domain Driven Design
+
+This application implements Domain Driven Design principles while preserving Rails' advantages. For details, see [DDD Implementation](docs/ddd_implementation.md).
+
 ## Caution
 
 * This repository has some `NOTE` here and there. But they are for education purposes. You shouldn't mimic them when you write code for production.

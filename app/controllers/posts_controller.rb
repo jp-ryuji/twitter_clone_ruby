@@ -1,12 +1,19 @@
 # frozen_string_literal: true
 
+require_relative '../application/post_application_service'
+
 class PostsController < ApplicationController
   def create
-    @post = current_user.posts.build(post_params)
-    if @post.save
+    post_app_service = PostApplicationService.new
+
+    begin
+      @post = post_app_service.create_post(
+        user_id: current_user.id,
+        content: params[:post][:content]
+      )
       redirect_to root_url, notice: 'Posted successfully'
-    else
-      redirect_to root_url, alert: 'Failed to post'
+    rescue ArgumentError => e
+      redirect_to root_url, alert: e.message
     end
   end
 

@@ -19,7 +19,7 @@ module Api
         # rubocop:disable Style/GuardClause
         if stale?(last_modified: @user.updated_at.utc)
           { compress: true, expires_in: 24.hours, race_condition_ttl: 10 }
-          Rails.cache.fetch("#{@user.cache_key}/#{__method__}") do
+          Rails.cache.fetch(" #{@user.cache_key}/#{__method__}") do
             render json: @user
           end
         end
@@ -29,6 +29,7 @@ module Api
       private
 
       def set_user
+        # For now, we'll use the ActiveRecord model directly until we implement the repository
         @user = User.find(params[:id])
       end
     end

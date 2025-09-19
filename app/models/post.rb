@@ -17,14 +17,22 @@
 #  index_posts_on_user_id   (user_id)
 #
 
+require_relative '../value_objects/post_content'
+
 class Post < ApplicationRecord
   belongs_to :user
 
   validates :content, presence: true
-  validates :content, length: { in: 1..140 }, allow_blank: true
   # NOTE: Bear in mind that the uniqueness validation by rails doesn't work perfectly.
   #   So don't forget to add the validation on the db level. See: db/migrate/20180228012223_add_id_token_to_posts.rb
   validates :id_token, presence: true, uniqueness: true
+
+  # Use value object for validation
+  validates_each :content do |record, attr, value|
+    PostContent.new(value) if value.present?
+  rescue ArgumentError
+    record.errors.add(attr, 'is invalid')
+  end
 
   # NOTE: Put logic (block) here because there's only one line. It should be a private method when there're multiple lines.
   before_validation -> { self.id_token = SecureRandom.uuid if id_token.blank? }

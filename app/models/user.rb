@@ -29,6 +29,9 @@
 #  index_users_on_screen_name           (screen_name) UNIQUE
 #
 
+require_relative '../value_objects/email'
+require_relative '../value_objects/screen_name'
+
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
@@ -40,22 +43,27 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
-  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d-]+(\.[a-z\d-]+)*\.[a-z]+\z/i
-  SCREEN_NAME_REGEXP = /\A[0-9a-zA-Z_]{1,15}\z/i
-
-  before_validation do
-    self.email = email.downcase if email
-    self.screen_name = screen_name.downcase if screen_name
-  end
+  before_validation :normalize_fields
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :email, format: { with: EMAIL_REGEX }, allow_blank: true
   validates :password, presence: true, on: :create
   validates :password, length: { minimum: 6 }, allow_blank: true
   validates :screen_name, presence: true, uniqueness: { case_sensitive: false }
-  validates :screen_name, format: { with: SCREEN_NAME_REGEXP }, allow_blank: true
   validates :screen_name, exclusion: { in: UNAVAILABLE_SCREEN_NAMES }, allow_blank: true
   validates :name, length: { maximum: 20 }, allow_blank: true
+
+  # Use value objects for validation
+  validates_each :email do |record, attr, value|
+    Email.new(value) if value.present?
+  rescue ArgumentError
+    record.errors.add(attr, 'is invalid')
+  end
+
+  validates_each :screen_name do |record, attr, value|
+    ScreenName.new(value) if value.present?
+  rescue ArgumentError
+    record.errors.add(attr, 'is invalid')
+  end
 
   def self.not_following_users(myself)
     where.not(id: myself.id)
@@ -73,5 +81,12 @@ class User < ApplicationRecord
   def register
     Code.new(self, :code).assign_value
     save
+  end
+
+  private
+
+  def normalize_fields
+    self.email = email.downcase if email
+    self.screen_name = screen_name.downcase if screen_name
   end
 end
